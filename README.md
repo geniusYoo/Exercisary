@@ -1,0 +1,2 @@
+# Exercisary
+Exercisary = Exercise + Diary !
