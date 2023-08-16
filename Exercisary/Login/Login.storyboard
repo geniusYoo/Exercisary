@@ -23,17 +23,17 @@
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="로그인" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoV-Fa-SLw">
+                                <rect key="frame" x="181" y="265" width="52" height="24"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="9tV-U6-Fr6">
-                                <rect key="frame" x="57" y="255" width="300" height="400"/>
+                                <rect key="frame" x="57" y="319" width="300" height="332"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="로그인" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoV-Fa-SLw">
-                                        <rect key="frame" x="124" y="0.0" width="52" height="24"/>
-                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="아이디" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="M6q-yW-cMI">
-                                        <rect key="frame" x="0.0" y="68" width="300" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
                                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="48v-XZ-P40"/>
@@ -43,7 +43,7 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="비밀번호" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PB2-kO-H02">
-                                        <rect key="frame" x="0.0" y="162" width="300" height="50"/>
+                                        <rect key="frame" x="0.0" y="94" width="300" height="50"/>
                                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Gs0-Zt-UgS"/>
@@ -53,7 +53,7 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qka-di-zxR">
-                                        <rect key="frame" x="0.0" y="256" width="300" height="50"/>
+                                        <rect key="frame" x="0.0" y="188" width="300" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="hRv-WC-6If"/>
@@ -69,7 +69,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLO-EG-XaC">
-                                        <rect key="frame" x="0.0" y="350" width="300" height="50"/>
+                                        <rect key="frame" x="0.0" y="282" width="300" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="3sk-Wj-OIC"/>
@@ -90,9 +90,11 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="hoV-Fa-SLw" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="0L8-qp-A5w"/>
                             <constraint firstItem="9tV-U6-Fr6" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="3fg-LK-UAe"/>
-                            <constraint firstItem="9tV-U6-Fr6" firstAttribute="centerY" secondItem="vDu-zF-Fre" secondAttribute="centerY" id="5wl-85-TKh"/>
+                            <constraint firstItem="9tV-U6-Fr6" firstAttribute="centerY" secondItem="vDu-zF-Fre" secondAttribute="centerY" constant="30" id="5wl-85-TKh"/>
                             <constraint firstItem="J3K-Hs-QE3" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="B0O-Zv-o2H"/>
+                            <constraint firstItem="9tV-U6-Fr6" firstAttribute="top" secondItem="hoV-Fa-SLw" secondAttribute="bottom" constant="30" id="ktC-PS-JcB"/>
                             <constraint firstItem="J3K-Hs-QE3" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="80" id="xr6-TS-eW6"/>
                         </constraints>
                     </view>

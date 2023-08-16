@@ -18,10 +18,8 @@
 		5B362A472A39EB5200233283 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B362A462A39EB5200233283 /* GoogleService-Info.plist */; };
 		5B362A492A39EF1200233283 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B362A482A39EF1200233283 /* Exercise.swift */; };
 		5B362A4B2A39EF7B00233283 /* AddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B362A4A2A39EF7B00233283 /* AddExerciseViewController.swift */; };
-		5B48B1312A40A516001064EC /* ExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48B1302A40A516001064EC /* ExerciseViewModel.swift */; };
 		5B48B1332A40A6FF001064EC /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48B1322A40A6FF001064EC /* Functions.swift */; };
 		5BAF03D52A388997008E6535 /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF03D42A388997008E6535 /* DetailCollectionViewCell.swift */; };
-		5BC11C312A403AB20022E652 /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC11C302A403AB20022E652 /* FirebaseStorageManager.swift */; };
 		5BDD65BD2A38645F008E0889 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD65BC2A38645F008E0889 /* AppDelegate.swift */; };
 		5BDD65BF2A38645F008E0889 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD65BE2A38645F008E0889 /* SceneDelegate.swift */; };
 		5BDD65C12A38645F008E0889 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD65C02A38645F008E0889 /* ViewController.swift */; };
@@ -57,10 +55,8 @@
 		5B362A462A39EB5200233283 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B362A482A39EF1200233283 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		5B362A4A2A39EF7B00233283 /* AddExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewController.swift; sourceTree = "<group>"; };
-		5B48B1302A40A516001064EC /* ExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewModel.swift; sourceTree = "<group>"; };
 		5B48B1322A40A6FF001064EC /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		5BAF03D42A388997008E6535 /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
-		5BC11C302A403AB20022E652 /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
 		5BDD65B92A38645F008E0889 /* Exercisary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exercisary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BDD65BC2A38645F008E0889 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BDD65BE2A38645F008E0889 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,8 +148,6 @@
 				5B17C36F2A84EB1D00BF280C /* Model */,
 				5BDD65BC2A38645F008E0889 /* AppDelegate.swift */,
 				5BDD65BE2A38645F008E0889 /* SceneDelegate.swift */,
-				5BC11C302A403AB20022E652 /* FirebaseStorageManager.swift */,
-				5B48B1302A40A516001064EC /* ExerciseViewModel.swift */,
 				5BDD65C02A38645F008E0889 /* ViewController.swift */,
 				5B362A4A2A39EF7B00233283 /* AddExerciseViewController.swift */,
 				5BAF03D42A388997008E6535 /* DetailCollectionViewCell.swift */,
@@ -336,8 +330,6 @@
 				5BDD65C12A38645F008E0889 /* ViewController.swift in Sources */,
 				5BDD65BD2A38645F008E0889 /* AppDelegate.swift in Sources */,
 				5BDD65BF2A38645F008E0889 /* SceneDelegate.swift in Sources */,
-				5BC11C312A403AB20022E652 /* FirebaseStorageManager.swift in Sources */,
-				5B48B1312A40A516001064EC /* ExerciseViewModel.swift in Sources */,
 				5B17C3712A84FF6F00BF280C /* User.swift in Sources */,
 				5BAF03D52A388997008E6535 /* DetailCollectionViewCell.swift in Sources */,
 			);
