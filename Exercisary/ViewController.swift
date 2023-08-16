@@ -7,8 +7,6 @@
 
 import UIKit
 import FSCalendar
-import Firebase
-import FirebaseFirestore
 
 class ViewController: UIViewController {
 
@@ -22,7 +20,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var calendarViewHeight: NSLayoutConstraint!
-    // Firebase 참조 객체
     
     var selectDate = Date()
     var selectDateString = ""
@@ -44,15 +41,12 @@ class ViewController: UIViewController {
         calendarConfiguration()
         countButton.tintColor = UIColor.systemTeal
         backgroundView.isHidden = true
-//        dateLabel.text = dateToString(dateFormatString: "MM월 dd일", date: selectDate)
     }
     
+    // segmentControl로 주간/월간 전환할 때
     @IBAction func changeCalendarMode(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             changeCalendarScope("month")
-
-//            calendarView.frame.size.height = 400.0
-
         } else {
             changeCalendarScope("week")
         }
@@ -103,7 +97,7 @@ class ViewController: UIViewController {
     func calendarConfiguration() {
         calendarView.delegate = self
         calendarView.dataSource = self
-//        
+        
         detailCollectionView.delegate = self
         detailCollectionView.dataSource = self
         
@@ -171,6 +165,8 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
         dateLabel.text = dateToString(dateFormatString: "M월 dd일", date: date)
         
         changeCalendarScope("week")
+        segmentControl.selectedSegmentIndex = 1
+
         // 애니메이션 적용
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
@@ -221,6 +217,22 @@ extension ViewController {
             backgroundView.isHidden = false
             detailCollectionView.reloadData()
         }
+    }
+    
+    func fixOrientation(img: UIImage) -> UIImage {
+
+        if (img.imageOrientation == .up) {
+            return img
+        }
+
+        UIGraphicsBeginImageContextWithOptions(img.size, false, img.scale)
+        let rect = CGRect(x: 0, y: 0, width: img.size.width, height: img.size.height)
+        img.draw(in: rect)
+
+        let normalizedImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        return normalizedImage
     }
 }
 //
