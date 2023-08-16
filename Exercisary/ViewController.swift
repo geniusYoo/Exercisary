@@ -39,7 +39,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         calendarConfiguration()
-        countButton.tintColor = UIColor.systemTeal
         backgroundView.isHidden = true
     }
     
@@ -49,6 +48,8 @@ class ViewController: UIViewController {
             changeCalendarScope("month")
         } else {
             changeCalendarScope("week")
+            selectDateString = dateToString(dateFormatString: "MM월 dd일", date: selectDate)
+            dateLabel.text = selectDateString
         }
     }
     
@@ -94,31 +95,7 @@ class ViewController: UIViewController {
 //        })
     }
     
-    func calendarConfiguration() {
-        calendarView.delegate = self
-        calendarView.dataSource = self
-        
-        detailCollectionView.delegate = self
-        detailCollectionView.dataSource = self
-        
-        calendarView.layer.cornerRadius = 20
-
-        calendarView.appearance.headerMinimumDissolvedAlpha = 0.0 // header의 이번 달만 표시
-        calendarView.appearance.headerDateFormat = "YYYY년 M월"
-        calendarView.appearance.headerTitleColor = .label
-        
-        calendarView.appearance.eventDefaultColor = .systemGreen
-        calendarView.appearance.eventSelectionColor = .systemGreen
-        
-        calendarView.appearance.todayColor = .systemGreen
-        calendarView.appearance.selectionColor = .white
-        calendarView.appearance.titleDefaultColor = .label
-        calendarView.appearance.titleTodayColor = .black
-        calendarView.appearance.titleSelectionColor = .black
-        calendarView.appearance.weekdayTextColor = .label
-        
-        calendarView.locale = Locale(identifier: "ko_KR")
-    }
+    
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -156,11 +133,7 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         // 선택한 날짜에 해당하는 데이터 가져오기
-
-        let dateString = dateToString(dateFormatString: "yyyy.MM.dd", date: date)
-
-//        selectDate = date
-//        selectDateString = dateString
+        print("date select : \(date)")
 
         dateLabel.text = dateToString(dateFormatString: "M월 dd일", date: date)
         
@@ -168,11 +141,23 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
         segmentControl.selectedSegmentIndex = 1
 
         // 애니메이션 적용
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
 
     }
+    
+//    public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
+//        print("date deselect : \(date)")
+//        changeCalendarScope("month")
+//        segmentControl.selectedSegmentIndex = 0
+//
+//        // 애니메이션 적용
+//        UIView.animate(withDuration: 0.2) {
+//            self.view.layoutIfNeeded()
+//        }
+//    }
+    
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool){
         calendarViewHeight.constant = bounds.height
         
@@ -185,8 +170,31 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
 //
 //        return eventsCount
 //    }
+    
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+         switch dateFormatter.string(from: date) {
+         case dateFormatter.string(from: Date()):
+             return "헬스, 수영"
+                
+         case "2023-08-16":
+             return "수영"
+                
+         case "2023-08-17":
+             return "영어공부"
+                
+         case "2022-01-07":
+             return "수학공부"
+                
+         default:
+             return nil
+                
+            }
+        }
 }
-//
+
 extension ViewController {
     func dateToString(dateFormatString: String, date: Date) -> String {
         let dateFormatter = DateFormatter()
@@ -210,12 +218,20 @@ extension ViewController {
         if scope == "month" {
             calendarView.setScope(.month, animated: true)
             backgroundView.isHidden = true
+            // 애니메이션 적용
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
         }
         
         else if scope == "week" {
             calendarView.setScope(.week, animated: true)
             backgroundView.isHidden = false
             detailCollectionView.reloadData()
+            // 애니메이션 적용
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
         }
     }
     
@@ -234,5 +250,45 @@ extension ViewController {
 
         return normalizedImage
     }
+    
+    func calendarConfiguration() {
+        calendarView.delegate = self
+        calendarView.dataSource = self
+        
+        detailCollectionView.delegate = self
+        detailCollectionView.dataSource = self
+        
+        calendarView.layer.cornerRadius = 20
+        
+        calendarView.locale = Locale(identifier: "ko_KR")
+
+        // 상단 헤더 관련
+        calendarView.appearance.headerMinimumDissolvedAlpha = 0 // header의 이번 달만 표시
+        calendarView.appearance.headerDateFormat = "YYYY년 M월"
+        calendarView.appearance.headerTitleColor = .label
+        calendarView.headerHeight = 66 // YYYY년 M월 표시부 영역 높이
+        calendarView.weekdayHeight = 20 // 날짜 표시부 행의 높이
+        calendarView.rowHeight = 10
+        calendarView.appearance.headerTitleFont = UIFont.systemFont(ofSize: 24) //타이틀 폰트 크기
+
+        // 캘린더(날짜 부분) 관련
+        calendarView.backgroundColor = .white
+        calendarView.appearance.selectionColor = .systemTeal
+        calendarView.appearance.weekdayTextColor = .label
+        calendarView.appearance.titleDefaultColor = .label  // 평일
+        calendarView.appearance.titleWeekendColor = .red    // 주말
+
+        // 오늘 날짜 관련
+        calendarView.appearance.todayColor = .systemIndigo // 오늘 날짜에 표시되는 선택 전 동그라미 색
+        calendarView.appearance.titleTodayColor = .black // 오늘 날짜에 표시되는 특정 글자 색
+        calendarView.appearance.titleSelectionColor = .black
+        
+        // Month 폰트 설정
+        calendarView.appearance.headerTitleFont = UIFont(name: "NotoSansCJKKR-Medium", size: 16)
+                
+        // day 폰트 설정
+        calendarView.appearance.titleFont = UIFont(name: "Roboto-Regular", size: 14)
+        }
+    
 }
 //

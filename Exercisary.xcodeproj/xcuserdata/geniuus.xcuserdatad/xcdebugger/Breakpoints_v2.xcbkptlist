@@ -14,8 +14,8 @@
             filePath = "Exercisary/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
             <Locations>
@@ -48,54 +48,6 @@
                   startingLineNumber = "112"
                   endingLineNumber = "112"
                   offsetFromSymbolStart = "208">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "886823A7-EE7E-493E-9D48-9313EC26AA97"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Exercisary/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "calendar(_:didSelect:at:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "886823A7-EE7E-493E-9D48-9313EC26AA97 - 6eae99b246289dfa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Exercisary.ViewController.calendar(_: __C.FSCalendar, didSelect: Foundation.Date, at: __C.FSCalendarMonthPosition) -&gt; ()"
-                  moduleName = "Exercisary"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/geniuus/Exercisary/Exercisary/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "166"
-                  endingLineNumber = "166"
-                  offsetFromSymbolStart = "1136">
-               </Location>
-               <Location
-                  uuid = "886823A7-EE7E-493E-9D48-9313EC26AA97 - 6eae99b246289ddb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Exercisary.ViewController.calendar(_: __C.FSCalendar, didSelect: Foundation.Date, at: __C.FSCalendarMonthPosition) -&gt; ()"
-                  moduleName = "Exercisary"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/geniuus/Exercisary/Exercisary/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "167"
-                  endingLineNumber = "167"
-                  offsetFromSymbolStart = "820">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -158,8 +110,8 @@
             filePath = "Exercisary/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
             <Locations>
@@ -206,8 +158,8 @@
             filePath = "Exercisary/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "ViewController"
             landmarkType = "21">
             <Locations>
@@ -302,8 +254,8 @@
             filePath = "Exercisary/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
             <Locations>
