@@ -35,9 +35,6 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        
-        detailCollectionView.reloadData()
         calendarView.reloadData()
     }
 
@@ -45,7 +42,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         calendarConfiguration()
-        detailCollectionView.reloadData()
         countButton.tintColor = UIColor.systemTeal
         backgroundView.isHidden = true
 //        dateLabel.text = dateToString(dateFormatString: "MM월 dd일", date: selectDate)
@@ -53,18 +49,12 @@ class ViewController: UIViewController {
     
     @IBAction func changeCalendarMode(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            calendarView.setScope(.month, animated: true)
-            backgroundView.isHidden = true
+            changeCalendarScope("month")
 
 //            calendarView.frame.size.height = 400.0
 
         } else {
-            calendarView.setScope(.week, animated: true)
-
-            backgroundView.isHidden = false
-            detailCollectionView.reloadData()
-
-
+            changeCalendarScope("week")
         }
     }
     
@@ -149,7 +139,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         cell.timeLabel.text = "2h"
         cell.contentLabel.text = "IM 2바퀴, 운동량 1200M"
         cell.memoLabel.text = "진짜 힘든 날... 운동량 1100 달성! 팔로만 자유영 하는거 너무 힘들어.. 웨이트 병행해야겠다는 생각이 너무 많이 든 날 .. 팔 힘 기르자!"
-        
+        print("call datasource")
         return cell
     }
 
@@ -175,21 +165,17 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
 
         let dateString = dateToString(dateFormatString: "yyyy.MM.dd", date: date)
 
-        selectDate = date
-        selectDateString = dateString
+//        selectDate = date
+//        selectDateString = dateString
 
         dateLabel.text = dateToString(dateFormatString: "M월 dd일", date: date)
-        calendarView.setScope(.week, animated: true)
-
+        
+        changeCalendarScope("week")
         // 애니메이션 적용
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
         }
-//        calendarView.frame.size.height = 170.0
-        detailCollectionView.reloadData()
-        backgroundView.isHidden = false
-        segmentControl.setEnabled(true, forSegmentAt: 1)
-        print("clicked!")
+
     }
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool){
         calendarViewHeight.constant = bounds.height
@@ -222,6 +208,19 @@ extension ViewController {
         }
 
         return (startOfMonth, endOfMonth)
+    }
+    
+    func changeCalendarScope(_ scope: String) {
+        if scope == "month" {
+            calendarView.setScope(.month, animated: true)
+            backgroundView.isHidden = true
+        }
+        
+        else if scope == "week" {
+            calendarView.setScope(.week, animated: true)
+            backgroundView.isHidden = false
+            detailCollectionView.reloadData()
+        }
     }
 }
 //
