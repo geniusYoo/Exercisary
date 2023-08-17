@@ -11,15 +11,15 @@ class Exercise {
     static let shared = Exercise()
     var exercices: [Format] = []
 
-    private init() {}
-
     struct Format {
         var key: String
         var date: Date
         var dateString: String
-        var exerciseType: String
-        var exerciseTime: String
+        var type: String
+        var time: String
+        var content: String
         var memo: String
+        var photoUrl: String
     }
     
     func updateExerciseData(data: Format) {

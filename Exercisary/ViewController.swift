@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var modifyButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var countButton: UIButton!
     @IBOutlet weak var detailCollectionView: UICollectionView!
@@ -55,7 +56,9 @@ class ViewController: UIViewController {
     
     // 생성 버튼이나 수정 버튼이 눌렸을 때
     @IBAction func addButtonTapped(_ sender: UIButton) {
-//        let vc = storyboard?.instantiateViewController(withIdentifier: "Add") as! AddExerciseViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+        let vc = storyboard.instantiateViewController(withIdentifier: "Add") as! AddExerciseViewController
 //        vc.date = dateToString(dateFormatString: "yyyy.MM.dd", date: selectDate)
 //
 //        if sender.tag == 1 { // 생성
@@ -71,6 +74,8 @@ class ViewController: UIViewController {
 //
 //            navigationController?.pushViewController(vc, animated: true)
 //        }
+        navigationController?.pushViewController(vc, animated: true)
+
     }
     
     // 삭제 버튼이 눌렸을 때
