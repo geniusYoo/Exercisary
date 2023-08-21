@@ -6,6 +6,13 @@
 	<string>Exercisary가 카메라에 접근하려 합니다. 허용하시겠습니까?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Exercisary가 앨범에 접근하려 합니다. 허용하시겠습니까?</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Gaegu-Light.ttf</string>
+		<string>Gaegu-Regular.ttf</string>
+		<string>Gaegu-Bold.ttf</string>
+		<string>PoorStory-Regular.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

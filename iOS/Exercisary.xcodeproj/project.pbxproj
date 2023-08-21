@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		5B17C3712A84FF6F00BF280C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B17C3702A84FF6F00BF280C /* User.swift */; };
 		5B17C3742A84FFDC00BF280C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B17C3732A84FFDC00BF280C /* Login.storyboard */; };
+		5B2AF4232A939ECD000839E5 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AF4222A939ECD000839E5 /* SignUp.storyboard */; };
+		5B2AF4252A939EE0000839E5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AF4242A939EE0000839E5 /* SignUpViewController.swift */; };
+		5B2AF4272A939EED000839E5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AF4262A939EED000839E5 /* LoginViewController.swift */; };
+		5B2AF42C2A93DD05000839E5 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AF4282A93DD05000839E5 /* OFL.txt */; };
+		5B2AF42D2A93DD05000839E5 /* Gaegu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AF4292A93DD05000839E5 /* Gaegu-Bold.ttf */; };
+		5B2AF42E2A93DD05000839E5 /* Gaegu-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AF42A2A93DD05000839E5 /* Gaegu-Light.ttf */; };
+		5B2AF42F2A93DD05000839E5 /* Gaegu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AF42B2A93DD05000839E5 /* Gaegu-Regular.ttf */; };
+		5B2AF4312A93E1B4000839E5 /* PoorStory-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AF4302A93E1B4000839E5 /* PoorStory-Regular.ttf */; };
 		5B362A3B2A39DE3600233283 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5B362A3A2A39DE3600233283 /* FirebaseDatabase */; };
 		5B362A3D2A39DE3600233283 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5B362A3C2A39DE3600233283 /* FirebaseDatabaseSwift */; };
 		5B362A3F2A39DE3600233283 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5B362A3E2A39DE3600233283 /* FirebaseFirestore */; };
@@ -52,6 +60,14 @@
 /* Begin PBXFileReference section */
 		5B17C3702A84FF6F00BF280C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5B17C3732A84FFDC00BF280C /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		5B2AF4222A939ECD000839E5 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
+		5B2AF4242A939EE0000839E5 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		5B2AF4262A939EED000839E5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5B2AF4282A93DD05000839E5 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		5B2AF4292A93DD05000839E5 /* Gaegu-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gaegu-Bold.ttf"; sourceTree = "<group>"; };
+		5B2AF42A2A93DD05000839E5 /* Gaegu-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gaegu-Light.ttf"; sourceTree = "<group>"; };
+		5B2AF42B2A93DD05000839E5 /* Gaegu-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gaegu-Regular.ttf"; sourceTree = "<group>"; };
+		5B2AF4302A93E1B4000839E5 /* PoorStory-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoorStory-Regular.ttf"; sourceTree = "<group>"; };
 		5B362A462A39EB5200233283 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B362A482A39EF1200233283 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		5B362A4A2A39EF7B00233283 /* AddExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewController.swift; sourceTree = "<group>"; };
@@ -117,8 +133,36 @@
 			isa = PBXGroup;
 			children = (
 				5B17C3732A84FFDC00BF280C /* Login.storyboard */,
+				5B2AF4262A939EED000839E5 /* LoginViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		5B2AF41F2A939260000839E5 /* Write */ = {
+			isa = PBXGroup;
+			children = (
+				5B362A4A2A39EF7B00233283 /* AddExerciseViewController.swift */,
+			);
+			path = Write;
+			sourceTree = "<group>";
+		};
+		5B2AF4202A939276000839E5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5BDD65C02A38645F008E0889 /* ViewController.swift */,
+				5BAF03D42A388997008E6535 /* DetailCollectionViewCell.swift */,
+				5BE73AE72A39BB4B003043C5 /* Main.storyboard */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		5B2AF4212A939E94000839E5 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				5B2AF4222A939ECD000839E5 /* SignUp.storyboard */,
+				5B2AF4242A939EE0000839E5 /* SignUpViewController.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 		5BDD65B02A38645F008E0889 = {
@@ -144,19 +188,23 @@
 		5BDD65BB2A38645F008E0889 /* Exercisary */ = {
 			isa = PBXGroup;
 			children = (
+				5B2AF4212A939E94000839E5 /* SignUp */,
+				5B2AF4202A939276000839E5 /* Home */,
+				5B2AF41F2A939260000839E5 /* Write */,
 				5B17C3722A84FFC500BF280C /* Login */,
 				5B17C36F2A84EB1D00BF280C /* Model */,
 				5BDD65BC2A38645F008E0889 /* AppDelegate.swift */,
 				5BDD65BE2A38645F008E0889 /* SceneDelegate.swift */,
-				5BDD65C02A38645F008E0889 /* ViewController.swift */,
-				5B362A4A2A39EF7B00233283 /* AddExerciseViewController.swift */,
-				5BAF03D42A388997008E6535 /* DetailCollectionViewCell.swift */,
 				5B48B1322A40A6FF001064EC /* Functions.swift */,
-				5BE73AE72A39BB4B003043C5 /* Main.storyboard */,
 				5BDD65C52A386460008E0889 /* Assets.xcassets */,
 				5BDD65C72A386460008E0889 /* LaunchScreen.storyboard */,
 				5B362A462A39EB5200233283 /* GoogleService-Info.plist */,
+				5B2AF4302A93E1B4000839E5 /* PoorStory-Regular.ttf */,
 				5BDD65CA2A386460008E0889 /* Info.plist */,
+				5B2AF4292A93DD05000839E5 /* Gaegu-Bold.ttf */,
+				5B2AF42A2A93DD05000839E5 /* Gaegu-Light.ttf */,
+				5B2AF42B2A93DD05000839E5 /* Gaegu-Regular.ttf */,
+				5B2AF4282A93DD05000839E5 /* OFL.txt */,
 			);
 			path = Exercisary;
 			sourceTree = "<group>";
@@ -295,8 +343,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B2AF42E2A93DD05000839E5 /* Gaegu-Light.ttf in Resources */,
+				5B2AF4312A93E1B4000839E5 /* PoorStory-Regular.ttf in Resources */,
+				5B2AF42C2A93DD05000839E5 /* OFL.txt in Resources */,
+				5B2AF42D2A93DD05000839E5 /* Gaegu-Bold.ttf in Resources */,
 				5BDD65C92A386460008E0889 /* LaunchScreen.storyboard in Resources */,
 				5B362A472A39EB5200233283 /* GoogleService-Info.plist in Resources */,
+				5B2AF42F2A93DD05000839E5 /* Gaegu-Regular.ttf in Resources */,
+				5B2AF4232A939ECD000839E5 /* SignUp.storyboard in Resources */,
 				5BDD65C62A386460008E0889 /* Assets.xcassets in Resources */,
 				5B17C3742A84FFDC00BF280C /* Login.storyboard in Resources */,
 				5BE73AE82A39BB4B003043C5 /* Main.storyboard in Resources */,
@@ -330,7 +384,9 @@
 				5BDD65C12A38645F008E0889 /* ViewController.swift in Sources */,
 				5BDD65BD2A38645F008E0889 /* AppDelegate.swift in Sources */,
 				5BDD65BF2A38645F008E0889 /* SceneDelegate.swift in Sources */,
+				5B2AF4252A939EE0000839E5 /* SignUpViewController.swift in Sources */,
 				5B17C3712A84FF6F00BF280C /* User.swift in Sources */,
+				5B2AF4272A939EED000839E5 /* LoginViewController.swift in Sources */,
 				5BAF03D52A388997008E6535 /* DetailCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

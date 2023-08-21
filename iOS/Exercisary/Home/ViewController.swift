@@ -271,7 +271,7 @@ extension ViewController {
         calendarView.appearance.headerMinimumDissolvedAlpha = 0 // header의 이번 달만 표시
         calendarView.appearance.headerDateFormat = "YYYY년 M월"
         calendarView.appearance.headerTitleColor = .label
-        calendarView.headerHeight = 66 // YYYY년 M월 표시부 영역 높이
+        calendarView.headerHeight = 80 // YYYY년 M월 표시부 영역 높이
         calendarView.weekdayHeight = 20 // 날짜 표시부 행의 높이
         calendarView.rowHeight = 10
         calendarView.appearance.headerTitleFont = UIFont.systemFont(ofSize: 24) //타이틀 폰트 크기
@@ -289,10 +289,21 @@ extension ViewController {
         calendarView.appearance.titleSelectionColor = .black
         
         // Month 폰트 설정
-        calendarView.appearance.headerTitleFont = UIFont(name: "NotoSansCJKKR-Medium", size: 16)
-                
-        // day 폰트 설정
-        calendarView.appearance.titleFont = UIFont(name: "Roboto-Regular", size: 14)
+//        calendarView.appearance.headerTitleFont = UIFont(name: "Gaegu-Bold", size: 23)
+//
+//        // 헤더 폰트 설정
+        calendarView.appearance.headerTitleFont = UIFont(name: "Gaegu-Bold", size: 23)
+//
+//        // Weekday 폰트 설정
+//        calendarView.appearance.weekdayFont = UIFont(name: "Gaegu-Regular", size: 18)
+//
+//        // 각각의 일(날짜) 폰트 설정 (ex. 1 2 3 4 5 6 ...)
+//        calendarView.appearance.titleFont = UIFont(name: "Gaegu-Regular", size: 18)
+//
+//        calendarView.appearance.subtitleFont = UIFont(name: "Gaegu-Regular", size: 14)
+        
+       
+        
         }
     
 }

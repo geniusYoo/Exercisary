@@ -7,17 +7,16 @@
 
 import Foundation
 
-class User {
-    
+struct UserInfo {
     var userId: String
-    var password: String
     var userName: String
+    var password: String
+}
+
+class User {
+    var userInfo: UserInfo
     
-    init(userId: String, password: String, userName: String) {
-        self.userId = userId
-        self.password = password
-        self.userName = userName
+    init(userInfo: UserInfo) {
+        self.userInfo = userInfo
     }
-    
-    
 }
