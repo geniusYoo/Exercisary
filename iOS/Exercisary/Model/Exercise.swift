@@ -12,7 +12,7 @@ class Exercise {
     var exercices: [Format] = []
 
     struct Format {
-        var key: String
+        var originKey: String
         var date: Date
         var dateString: String
         var type: String
@@ -20,6 +20,7 @@ class Exercise {
         var content: String
         var memo: String
         var photoUrl: String
+        var userId: String
     }
     
     func updateExerciseData(data: Format) {

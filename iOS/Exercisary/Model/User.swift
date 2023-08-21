@@ -8,16 +8,15 @@
 import Foundation
 
 class User {
-    var name: String
-    var email: String
-    var password: String
-    var birth: String
     
-    init(name: String, email: String, password: String, birth: String) {
-        self.name = name
-        self.email = email
+    var userId: String
+    var password: String
+    var userName: String
+    
+    init(userId: String, password: String, userName: String) {
+        self.userId = userId
         self.password = password
-        self.birth = birth
+        self.userName = userName
     }
     
     
