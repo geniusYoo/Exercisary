@@ -38,6 +38,9 @@
 		5BDD65E02A386460008E0889 /* ExercisaryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD65DF2A386460008E0889 /* ExercisaryUITestsLaunchTests.swift */; };
 		5BDD65EE2A38657F008E0889 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 5BDD65ED2A38657F008E0889 /* FSCalendar */; };
 		5BE73AE82A39BB4B003043C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BE73AE72A39BB4B003043C5 /* Main.storyboard */; };
+		5BF875D92A9761C300872BBF /* ModifyExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF875D82A9761C300872BBF /* ModifyExerciseViewController.swift */; };
+		5BF875DC2A9762F100872BBF /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF875DB2A9762F100872BBF /* Server.swift */; };
+		5BF875DE2A978CBD00872BBF /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF875DD2A978CBD00872BBF /* SelectViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +89,9 @@
 		5BDD65DD2A386460008E0889 /* ExercisaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisaryUITests.swift; sourceTree = "<group>"; };
 		5BDD65DF2A386460008E0889 /* ExercisaryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisaryUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5BE73AE72A39BB4B003043C5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		5BF875D82A9761C300872BBF /* ModifyExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyExerciseViewController.swift; sourceTree = "<group>"; };
+		5BF875DB2A9762F100872BBF /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		5BF875DD2A978CBD00872BBF /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,20 +144,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		5B2AF41F2A939260000839E5 /* Write */ = {
-			isa = PBXGroup;
-			children = (
-				5B362A4A2A39EF7B00233283 /* AddExerciseViewController.swift */,
-			);
-			path = Write;
-			sourceTree = "<group>";
-		};
 		5B2AF4202A939276000839E5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				5BDD65C02A38645F008E0889 /* ViewController.swift */,
 				5BAF03D42A388997008E6535 /* DetailCollectionViewCell.swift */,
 				5BE73AE72A39BB4B003043C5 /* Main.storyboard */,
+				5BF875D82A9761C300872BBF /* ModifyExerciseViewController.swift */,
+				5B362A4A2A39EF7B00233283 /* AddExerciseViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -161,6 +161,7 @@
 			children = (
 				5B2AF4222A939ECD000839E5 /* SignUp.storyboard */,
 				5B2AF4242A939EE0000839E5 /* SignUpViewController.swift */,
+				5BF875DD2A978CBD00872BBF /* SelectViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -188,9 +189,9 @@
 		5BDD65BB2A38645F008E0889 /* Exercisary */ = {
 			isa = PBXGroup;
 			children = (
+				5BF875DA2A9762D000872BBF /* Configuration */,
 				5B2AF4212A939E94000839E5 /* SignUp */,
 				5B2AF4202A939276000839E5 /* Home */,
-				5B2AF41F2A939260000839E5 /* Write */,
 				5B17C3722A84FFC500BF280C /* Login */,
 				5B17C36F2A84EB1D00BF280C /* Model */,
 				5BDD65BC2A38645F008E0889 /* AppDelegate.swift */,
@@ -224,6 +225,14 @@
 				5BDD65DF2A386460008E0889 /* ExercisaryUITestsLaunchTests.swift */,
 			);
 			path = ExercisaryUITests;
+			sourceTree = "<group>";
+		};
+		5BF875DA2A9762D000872BBF /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				5BF875DB2A9762F100872BBF /* Server.swift */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,15 +387,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BF875D92A9761C300872BBF /* ModifyExerciseViewController.swift in Sources */,
 				5B362A4B2A39EF7B00233283 /* AddExerciseViewController.swift in Sources */,
 				5B362A492A39EF1200233283 /* Exercise.swift in Sources */,
 				5B48B1332A40A6FF001064EC /* Functions.swift in Sources */,
 				5BDD65C12A38645F008E0889 /* ViewController.swift in Sources */,
 				5BDD65BD2A38645F008E0889 /* AppDelegate.swift in Sources */,
 				5BDD65BF2A38645F008E0889 /* SceneDelegate.swift in Sources */,
+				5BF875DE2A978CBD00872BBF /* SelectViewController.swift in Sources */,
 				5B2AF4252A939EE0000839E5 /* SignUpViewController.swift in Sources */,
 				5B17C3712A84FF6F00BF280C /* User.swift in Sources */,
 				5B2AF4272A939EED000839E5 /* LoginViewController.swift in Sources */,
+				5BF875DC2A9762F100872BBF /* Server.swift in Sources */,
 				5BAF03D52A388997008E6535 /* DetailCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,6 +571,8 @@
 				DEVELOPMENT_TEAM = 2WJ47F5784;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Exercisary/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Exercisary가 카메라에 접근하려 합니다. 허용하시겠습니까?";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Exercisary가 앨범에 접근하려 합니다. 허용하시겠습니까?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -587,6 +601,8 @@
 				DEVELOPMENT_TEAM = 2WJ47F5784;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Exercisary/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Exercisary가 카메라에 접근하려 합니다. 허용하시겠습니까?";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Exercisary가 앨범에 접근하려 합니다. 허용하시겠습니까?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

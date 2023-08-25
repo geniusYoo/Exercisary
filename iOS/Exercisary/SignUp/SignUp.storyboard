@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gaegu-Bold.ttf">
+            <string>Gaegu-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Sign Up View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUp" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="SignUpViewController" customModule="Exercisary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Utf-qg-WXg">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercisary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xC7-SA-Vgb">
-                                <rect key="frame" x="114.33333333333333" y="139" width="164.66666666666669" height="44.333333333333343"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="36"/>
+                                <rect key="frame" x="111" y="139" width="171" height="41"/>
+                                <fontDescription key="fontDescription" name="Gaegu-Bold" family="Gaegu" pointSize="40"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -40,7 +44,7 @@
                                             <constraint firstAttribute="height" constant="50" id="g9I-4t-nhi"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="name"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="아이디" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rFa-Y3-FOX">
                                         <rect key="frame" x="0.0" y="80" width="300" height="50"/>
@@ -60,7 +64,7 @@
                                             <constraint firstAttribute="width" constant="300" id="qbL-I4-5Ty"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAQ-8j-mbx">
                                         <rect key="frame" x="0.0" y="240" width="300" height="50"/>
@@ -69,11 +73,14 @@
                                             <constraint firstAttribute="width" constant="300" id="UyR-3f-m8W"/>
                                             <constraint firstAttribute="height" constant="50" id="z4R-vC-Bxh"/>
                                         </constraints>
-                                        <color key="tintColor" systemColor="systemTealColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="회원가입">
                                             <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                            <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="confirmButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="fZb-gK-eT7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -89,22 +96,27 @@
                             <constraint firstItem="b72-9s-zNV" firstAttribute="centerX" secondItem="1gO-nu-Hg8" secondAttribute="centerX" id="hU9-9Y-CcM"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="idTextField" destination="rFa-Y3-FOX" id="Jt3-Zm-11s"/>
+                        <outlet property="nameTextField" destination="6Sg-9b-l2G" id="7ky-td-qNG"/>
+                        <outlet property="pwTextField" destination="FrR-Bt-bl7" id="rid-B6-yDr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-302" y="-35"/>
         </scene>
-        <!--View Controller-->
+        <!--Select View Controller-->
         <scene sceneID="x7b-LV-YhC">
             <objects>
-                <viewController id="0uf-35-hdN" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Select" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0uf-35-hdN" customClass="SelectViewController" customModule="Exercisary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VvT-Cz-CtZ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercisary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMw-wS-i4a">
-                                <rect key="frame" x="114.33333333333333" y="139" width="164.66666666666669" height="44.333333333333343"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="36"/>
+                                <rect key="frame" x="111" y="139" width="171" height="41"/>
+                                <fontDescription key="fontDescription" name="Gaegu-Bold" family="Gaegu" pointSize="40"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -122,10 +134,10 @@
                                     <constraint firstAttribute="width" constant="300" id="98M-fD-Py8"/>
                                     <constraint firstAttribute="height" constant="50" id="R0J-n6-PlA"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="systemTealColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Exercisary 시작하기">
                                     <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                    <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                 </buttonConfiguration>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2hm-sT-Lem">
@@ -150,16 +162,16 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="qDP-Px-k09">
-                                <rect key="frame" x="48" y="326" width="297.33333333333331" height="75.666666666666686"/>
+                                <rect key="frame" x="64" y="326" width="265.33333333333331" height="75.666666666666686"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="관심 있는 운동들을 선택하세요 😎" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDT-OH-Dva">
-                                        <rect key="frame" x="0.0" y="0.0" width="231.66666666666666" height="20.333333333333332"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="관심 있는 운동을 하나만 선택하세요 😎" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDT-OH-Dva">
+                                        <rect key="frame" x="0.0" y="0.0" width="265.33333333333331" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="w9b-ud-63p">
-                                        <rect key="frame" x="0.0" y="41.333333333333314" width="297.33333333333331" height="34.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="41.333333333333314" width="206.33333333333334" height="34.333333333333343"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSS-Vj-Lc7">
                                                 <rect key="frame" x="0.0" y="0.0" width="53.666666666666664" height="34.333333333333336"/>
@@ -182,11 +194,11 @@
                                                     <color key="baseBackgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fT-cQ-PC8">
-                                                <rect key="frame" x="214.33333333333331" y="0.0" width="83" height="34.333333333333336"/>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fT-cQ-PC8">
+                                                <rect key="frame" x="206.33333333333331" y="0.0" width="0.0" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="필라테스" cornerStyle="capsule">
-                                                    <color key="baseBackgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="baseBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                             </button>
                                         </subviews>

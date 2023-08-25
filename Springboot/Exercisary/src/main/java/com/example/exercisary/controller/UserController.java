@@ -69,7 +69,6 @@ public class UserController {
         UserEntity user = userService.getByCredentials(userDTO.getUserId(), userDTO.getPassword(), passwordEncoder);
 
         if (user != null) {
-
             //이때만 특별히 toEntity()를 사용하지 않고 빌더를 사용해 토큰을 붙여서 보내줌
             final UserDTO responseUserDTO = UserDTO.builder()
                     .userId(user.getUserId())

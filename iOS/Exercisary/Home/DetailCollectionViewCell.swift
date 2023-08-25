@@ -14,5 +14,7 @@ class DetailCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
+    @IBOutlet weak var imageView1: UIImageView!
     
+    @IBOutlet weak var imageView2: UIImageView!
 }

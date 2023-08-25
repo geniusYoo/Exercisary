@@ -26,8 +26,10 @@ class ViewController: UIViewController {
     var selectDateString = ""
     
     var backDate = ""
-    var data: Exercise?
+    var data: ExerciseInfo? // 사용자가 셀을 클릭할 때마다 셀의 정보가 저장되는 변수
     
+    // Add VC로 넘길 때 클릭했던 날짜를 넘기기 위한 date 변수
+    var currentDate = Date()
     // 삭제 시 띄울 Alert
     let deleteConfirmAlert = UIAlertController(title: "오운완 삭제", message: "이 오운완을 삭제하시겠습니까?", preferredStyle: .alert)
 
@@ -41,6 +43,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         calendarConfiguration()
         backgroundView.isHidden = true
+        backgroundView.layer.borderColor = UIColor.systemTeal.cgColor
+        backgroundView.layer.borderWidth = 2
+        backgroundView.layer.cornerRadius = 20
     }
     
     // segmentControl로 주간/월간 전환할 때
@@ -54,29 +59,32 @@ class ViewController: UIViewController {
         }
     }
     
-    // 생성 버튼이나 수정 버튼이 눌렸을 때
+    // 생성 버튼이 눌렸을 때
     @IBAction func addButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
         let vc = storyboard.instantiateViewController(withIdentifier: "Add") as! AddExerciseViewController
-//        vc.date = dateToString(dateFormatString: "yyyy.MM.dd", date: selectDate)
-//
-//        if sender.tag == 1 { // 생성
-//            navigationController?.pushViewController(vc, animated: true)
-//        }
-//
-//        else if sender.tag == 2 { // 수정
-//            let filtered = ExerciseViewModel.shared.exercises.filter { $0.dateString == dateToString(dateFormatString: "yyyy.MM.dd", date: selectDate) }
-//            vc.exerciseType = filtered.first?.exerciseType ?? ""
-//            vc.exerciseTime = filtered.first?.exerciseTime ?? ""
-//            vc.memo = filtered.first?.memo ?? ""
-//            print("filtered : \(filtered)")
-//
-//            navigationController?.pushViewController(vc, animated: true)
-//        }
+        
+        vc.date = currentDate
+        vc.flag = 0
         navigationController?.pushViewController(vc, animated: true)
 
     }
+    
+    @IBAction func modifyButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+        let vc = storyboard.instantiateViewController(withIdentifier: "Add") as! AddExerciseViewController
+        
+        vc.flag = 1
+
+        vc.data = data ?? ExerciseInfo(key: "", date: Date(), type: "", time: "", content: "", memo: "", photoUrl: "", userId: "")
+        
+        
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     // 삭제 버튼이 눌렸을 때
     @IBAction func deleteButtonTapped(_ sender: Any) {
@@ -101,6 +109,7 @@ class ViewController: UIViewController {
     }
     
     
+    
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -115,6 +124,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         cell.timeLabel.text = "2h"
         cell.contentLabel.text = "IM 2바퀴, 운동량 1200M"
         cell.memoLabel.text = "진짜 힘든 날... 운동량 1100 달성! 팔로만 자유영 하는거 너무 힘들어.. 웨이트 병행해야겠다는 생각이 너무 많이 든 날 .. 팔 힘 기르자!"
+        
+        
+        var temp = ExerciseInfo(key: "", date: currentDate, type: "수영", time: "2h", content: "IM 2바퀴, 운동량 1200M", memo: "진짜 힘든 날... 운동량 1100 달성! 팔로만 자유영 하는거 너무 힘들어.. 웨이트 병행해야겠다는 생각이 너무 많이 든 날 .. 팔 힘 기르자!", photoUrl: "", userId: "")
+        
+        data = temp
         print("call datasource")
         return cell
     }
@@ -139,7 +153,8 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         // 선택한 날짜에 해당하는 데이터 가져오기
         print("date select : \(date)")
-
+        
+        currentDate = date
         dateLabel.text = dateToString(dateFormatString: "M월 dd일", date: date)
         
         changeCalendarScope("week")
@@ -151,17 +166,6 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
         }
 
     }
-    
-//    public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-//        print("date deselect : \(date)")
-//        changeCalendarScope("month")
-//        segmentControl.selectedSegmentIndex = 0
-//
-//        // 애니메이션 적용
-//        UIView.animate(withDuration: 0.2) {
-//            self.view.layoutIfNeeded()
-//        }
-//    }
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool){
         calendarViewHeight.constant = bounds.height
@@ -207,18 +211,6 @@ extension ViewController {
         return dateFormatter.string(from: date)
     }
 
-    func getStartAndEndDateOfMonth(for date: Date) -> (start: Date, end: Date)? {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month], from: date)
-
-        guard let startOfMonth = calendar.date(from: components),
-              let endOfMonth = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth) else {
-            return nil
-        }
-
-        return (startOfMonth, endOfMonth)
-    }
-    
     func changeCalendarScope(_ scope: String) {
         if scope == "month" {
             calendarView.setScope(.month, animated: true)
@@ -289,22 +281,10 @@ extension ViewController {
         calendarView.appearance.titleSelectionColor = .black
         
         // Month 폰트 설정
-//        calendarView.appearance.headerTitleFont = UIFont(name: "Gaegu-Bold", size: 23)
-//
-//        // 헤더 폰트 설정
-        calendarView.appearance.headerTitleFont = UIFont(name: "Gaegu-Bold", size: 23)
-//
-//        // Weekday 폰트 설정
-//        calendarView.appearance.weekdayFont = UIFont(name: "Gaegu-Regular", size: 18)
-//
-//        // 각각의 일(날짜) 폰트 설정 (ex. 1 2 3 4 5 6 ...)
-//        calendarView.appearance.titleFont = UIFont(name: "Gaegu-Regular", size: 18)
-//
-//        calendarView.appearance.subtitleFont = UIFont(name: "Gaegu-Regular", size: 14)
-        
-       
-        
+        calendarView.appearance.headerTitleFont = UIFont(name: "NotoSansCJKKR-Medium", size: 16)
+                
+        // day 폰트 설정
+        calendarView.appearance.titleFont = UIFont(name: "Roboto-Regular", size: 14)
         }
-    
 }
 //

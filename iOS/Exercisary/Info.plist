@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>Exercisary가 카메라에 접근하려 합니다. 허용하시겠습니까?</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Exercisary가 앨범에 접근하려 합니다. 허용하시겠습니까?</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Gaegu-Light.ttf</string>
@@ -27,7 +23,7 @@
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
+					<string>SignUp</string>
 				</dict>
 			</array>
 		</dict>
