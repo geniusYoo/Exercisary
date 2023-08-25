@@ -21,6 +21,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var calendarViewHeight: NSLayoutConstraint!
+
+    @IBOutlet weak var userNameLabel: UILabel!
     
     var selectDate = Date()
     var selectDateString = ""
@@ -28,17 +30,16 @@ class ViewController: UIViewController {
     var backDate = ""
     var data: ExerciseInfo? // 사용자가 셀을 클릭할 때마다 셀의 정보가 저장되는 변수
     
-    // Add VC로 넘길 때 클릭했던 날짜를 넘기기 위한 date 변수
-    var currentDate = Date()
-    // 삭제 시 띄울 Alert
-    let deleteConfirmAlert = UIAlertController(title: "오운완 삭제", message: "이 오운완을 삭제하시겠습니까?", preferredStyle: .alert)
+    var userName: String! // 회원가입할 때 사용자가 지정한 이름으로 메인 뷰에 표시하기 위한 변수
+    
+    var currentDate = Date() // Add VC로 넘길 때 클릭했던 날짜를 넘기기 위한 date 변수
+    let deleteConfirmAlert = UIAlertController(title: "오운완 삭제", message: "이 오운완을 삭제하시겠습니까?", preferredStyle: .alert) // 삭제 시 띄울 Alert
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         calendarView.reloadData()
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         calendarConfiguration()
@@ -46,6 +47,8 @@ class ViewController: UIViewController {
         backgroundView.layer.borderColor = UIColor.systemTeal.cgColor
         backgroundView.layer.borderWidth = 2
         backgroundView.layer.cornerRadius = 20
+        
+        userNameLabel.text = userName
     }
     
     // segmentControl로 주간/월간 전환할 때
@@ -62,13 +65,11 @@ class ViewController: UIViewController {
     // 생성 버튼이 눌렸을 때
     @IBAction func addButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
         let vc = storyboard.instantiateViewController(withIdentifier: "Add") as! AddExerciseViewController
         
         vc.date = currentDate
         vc.flag = 0
         navigationController?.pushViewController(vc, animated: true)
-
     }
     
     @IBAction func modifyButtonTapped(_ sender: UIButton) {

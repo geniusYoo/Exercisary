@@ -11,6 +11,26 @@ class Server {
     var baseURL = "http://3.35.149.87:8080/"
     var result: String = ""
     
+    func signUp(requestURL: String, requestBody:[String:Any], completion: @escaping (URLResponse) -> Void){
+        guard let url = URL(string: Server().baseURL + requestURL) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let data = try? JSONSerialization.data(withJSONObject: requestBody, options: [])
+        request.httpBody = data
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            guard let data = data else { return } // 응답 데이터가 nil이 아닌지 확인.
+            if let responseString = String(data: data, encoding: .utf8) {
+                completion(response ?? URLResponse())
+            }
+            
+        }
+        task.resume()
+    }
+    
     func signIn(requestURL: String, requestBody: [String:Any], completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         guard let url = URL(string: Server().baseURL + requestURL) else { return }
         var request = URLRequest(url: url)
@@ -38,17 +58,15 @@ class Server {
         task.resume()
     }
     
-    func postDataToServer(requestURL: String, requestData: [String: Any], token: String, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    func postDataToServer(requestURL: String, requestData: [String: Any], completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         guard let url = URL(string: Server().baseURL + requestURL) else {
             completion(nil, nil, nil) // 잘못된 URL이면 completion에 nil 전달
             return
         }
         
         var request = URLRequest(url: url)
-        var header = "Bearer \(token)"
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(header, forHTTPHeaderField: "Authorization")
         
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: requestData)

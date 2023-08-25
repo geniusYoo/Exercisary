@@ -423,7 +423,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="apE-dz-FgT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-660.30534351145036" y="9.8591549295774659"/>
+            <point key="canvasLocation" x="-825" y="-6"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="bTX-8B-SlF">
@@ -464,7 +464,6 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="122.33333333333334" id="eae-vF-Bqq"/>
                                     <constraint firstAttribute="height" constant="18" id="xwp-2f-kF6"/>
                                 </constraints>
                             </stackView>
@@ -488,7 +487,7 @@
                                 <rect key="frame" x="10" y="637.66666666666663" width="373" height="130.33333333333337"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rqs-Sm-Pmn">
-                                        <rect key="frame" x="0.0" y="63.999999999999993" width="373" height="66.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="63.999999999999993" width="373" height="66.333333333333286"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rDE-JR-BsI">
                                             <size key="itemSize" width="373" height="410"/>
@@ -748,6 +747,7 @@
                         <outlet property="detailCollectionView" destination="rqs-Sm-Pmn" id="RYQ-lq-0MV"/>
                         <outlet property="modifyButton" destination="mL2-da-z8d" id="DMd-Gm-ct8"/>
                         <outlet property="segmentControl" destination="rMS-4l-veF" id="qyZ-oC-xOK"/>
+                        <outlet property="userNameLabel" destination="JFH-Qv-UlA" id="2N0-rn-fQB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNt-ma-f5x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

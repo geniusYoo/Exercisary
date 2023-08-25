@@ -11,6 +11,7 @@ struct UserInfo {
     var userId: String
     var userName: String
     var password: String
+    var preferredType: String
 }
 
 class User {

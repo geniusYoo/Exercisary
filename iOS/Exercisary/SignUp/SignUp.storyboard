@@ -44,7 +44,7 @@
                                             <constraint firstAttribute="height" constant="50" id="g9I-4t-nhi"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="name"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="name"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="아이디" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rFa-Y3-FOX">
                                         <rect key="frame" x="0.0" y="80" width="300" height="50"/>
@@ -54,7 +54,7 @@
                                             <constraint firstAttribute="height" constant="50" id="N76-Ud-nDR"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="비밀번호" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FrR-Bt-bl7">
                                         <rect key="frame" x="0.0" y="160" width="300" height="50"/>
@@ -64,7 +64,7 @@
                                             <constraint firstAttribute="width" constant="300" id="qbL-I4-5Ty"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="join" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="one-time-code"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAQ-8j-mbx">
                                         <rect key="frame" x="0.0" y="240" width="300" height="50"/>
@@ -139,68 +139,95 @@
                                     <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="20"/>
                                     <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="startButtonTapped:" destination="0uf-35-hdN" eventType="touchUpInside" id="lIE-52-YK6"/>
+                                </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2hm-sT-Lem">
-                                <rect key="frame" x="46.666666666666657" y="586" width="300" height="90.333333333333371"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="2sF-Lw-xBe">
+                                <rect key="frame" x="28.333333333333343" y="334" width="336.66666666666663" height="197"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리스트에 없는 운동을 추가하세요 🤩" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZwX-IQ-RFu">
-                                        <rect key="frame" x="0.0" y="0.0" width="246.33333333333334" height="20.333333333333332"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="운동 종류 입력" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FNm-5x-tr0">
-                                        <rect key="frame" x="0.0" y="40.333333333333371" width="300" height="50"/>
-                                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="7fo-MP-7so"/>
-                                            <constraint firstAttribute="width" constant="300" id="tvg-Qf-bXk"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
-                                    </textField>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="qDP-Px-k09">
-                                <rect key="frame" x="64" y="326" width="265.33333333333331" height="75.666666666666686"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="관심 있는 운동을 하나만 선택하세요 😎" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDT-OH-Dva">
-                                        <rect key="frame" x="0.0" y="0.0" width="265.33333333333331" height="20.333333333333332"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="w9b-ud-63p">
-                                        <rect key="frame" x="0.0" y="41.333333333333314" width="206.33333333333334" height="34.333333333333343"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="qDP-Px-k09">
+                                        <rect key="frame" x="0.0" y="0.0" width="265.33333333333331" height="75.666666666666671"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSS-Vj-Lc7">
-                                                <rect key="frame" x="0.0" y="0.0" width="53.666666666666664" height="34.333333333333336"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="헬스" cornerStyle="capsule">
-                                                    <color key="baseBackgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TtG-eC-Xe9">
-                                                <rect key="frame" x="61.666666666666671" y="0.0" width="83.000000000000014" height="34.333333333333336"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="크로스핏" cornerStyle="capsule">
-                                                    <color key="baseBackgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lra-jt-D2W">
-                                                <rect key="frame" x="152.66666666666666" y="0.0" width="53.666666666666657" height="34.333333333333336"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="수영" cornerStyle="capsule">
-                                                    <color key="baseBackgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fT-cQ-PC8">
-                                                <rect key="frame" x="206.33333333333331" y="0.0" width="0.0" height="34.333333333333336"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="필라테스" cornerStyle="capsule">
-                                                    <color key="baseBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
-                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="관심 있는 운동을 하나만 선택하세요 😎" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDT-OH-Dva">
+                                                <rect key="frame" x="0.0" y="0.0" width="265.33333333333331" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="w9b-ud-63p">
+                                                <rect key="frame" x="0.0" y="41.333333333333314" width="206.33333333333334" height="34.333333333333343"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSS-Vj-Lc7">
+                                                        <rect key="frame" x="0.0" y="0.0" width="53.666666666666664" height="34.333333333333336"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="헬스" cornerStyle="capsule">
+                                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TtG-eC-Xe9">
+                                                        <rect key="frame" x="61.666666666666671" y="0.0" width="83.000000000000014" height="34.333333333333336"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="크로스핏" cornerStyle="capsule">
+                                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lra-jt-D2W">
+                                                        <rect key="frame" x="152.66666666666666" y="0.0" width="53.666666666666657" height="34.333333333333336"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="수영" cornerStyle="capsule">
+                                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                    <button hidden="YES" opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fT-cQ-PC8">
+                                                        <rect key="frame" x="206.33333333333331" y="0.0" width="0.0" height="34.333333333333336"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="필라테스" cornerStyle="capsule">
+                                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Jr5-NL-VvD">
+                                        <rect key="frame" x="0.0" y="105.66666666666669" width="336.66666666666669" height="91.333333333333314"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리스트에 없는 운동을 추가하세요 🤩" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TlN-zC-0vd">
+                                                <rect key="frame" x="0.0" y="0.0" width="246.33333333333334" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="55g-9i-PKa">
+                                                <rect key="frame" x="0.0" y="40.333333333333314" width="336.66666666666669" height="51"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="운동 종류 입력" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="SXf-Wq-SuN">
+                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                                                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="5YB-pc-9ol"/>
+                                                            <constraint firstAttribute="width" constant="280" id="Z7d-rk-YbQ"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZ2-K0-VFR">
+                                                        <rect key="frame" x="290" y="0.0" width="46.666666666666686" height="51"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="tinted" title="+" subtitle="추가">
+                                                            <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                                                            <color key="baseBackgroundColor" systemColor="systemTealColor"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="addButtonTapped:" destination="0uf-35-hdN" eventType="touchUpInside" id="tP3-Gg-912"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="SXf-Wq-SuN" firstAttribute="width" secondItem="SZ2-K0-VFR" secondAttribute="width" multiplier="6" id="inJ-W5-n2q"/>
+                                                </constraints>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -210,17 +237,22 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="CoQ-4d-fqi" firstAttribute="bottom" secondItem="A4A-mW-KFw" secondAttribute="bottom" constant="20" id="0RT-oH-VHt"/>
-                            <constraint firstItem="2hm-sT-Lem" firstAttribute="centerX" secondItem="CoQ-4d-fqi" secondAttribute="centerX" id="5in-rJ-RL9"/>
                             <constraint firstItem="55n-ZT-bVD" firstAttribute="top" secondItem="CoQ-4d-fqi" secondAttribute="top" constant="206" id="Fu6-SJ-Pt6"/>
-                            <constraint firstItem="A4A-mW-KFw" firstAttribute="top" secondItem="2hm-sT-Lem" secondAttribute="bottom" constant="71.666666666666629" id="GVA-Vz-Y9r"/>
                             <constraint firstItem="A4A-mW-KFw" firstAttribute="centerX" secondItem="CoQ-4d-fqi" secondAttribute="centerX" id="H3M-0q-uOr"/>
                             <constraint firstItem="55n-ZT-bVD" firstAttribute="centerX" secondItem="CoQ-4d-fqi" secondAttribute="centerX" id="HqW-jM-h6K"/>
                             <constraint firstItem="SMw-wS-i4a" firstAttribute="centerX" secondItem="CoQ-4d-fqi" secondAttribute="centerX" id="Y4c-1D-EBF"/>
-                            <constraint firstItem="qDP-Px-k09" firstAttribute="top" secondItem="55n-ZT-bVD" secondAttribute="bottom" constant="37" id="ZC0-R7-SFY"/>
+                            <constraint firstItem="2sF-Lw-xBe" firstAttribute="top" secondItem="55n-ZT-bVD" secondAttribute="bottom" constant="45" id="cFx-JR-fSQ"/>
                             <constraint firstItem="SMw-wS-i4a" firstAttribute="top" secondItem="CoQ-4d-fqi" secondAttribute="top" constant="80" id="d7B-jA-Wua"/>
-                            <constraint firstItem="qDP-Px-k09" firstAttribute="centerX" secondItem="CoQ-4d-fqi" secondAttribute="centerX" id="ycy-Qu-fD4"/>
+                            <constraint firstItem="2sF-Lw-xBe" firstAttribute="centerX" secondItem="CoQ-4d-fqi" secondAttribute="centerX" id="seC-58-BTQ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="typeTextField" destination="SXf-Wq-SuN" id="ZWP-cJ-9VO"/>
+                        <outletCollection property="radioButtons" destination="lSS-Vj-Lc7" collectionClass="NSMutableArray" id="LIT-p8-KMx"/>
+                        <outletCollection property="radioButtons" destination="TtG-eC-Xe9" collectionClass="NSMutableArray" id="2hh-Ux-0ch"/>
+                        <outletCollection property="radioButtons" destination="lra-jt-D2W" collectionClass="NSMutableArray" id="XS1-LY-emL"/>
+                        <outletCollection property="radioButtons" destination="8fT-cQ-PC8" collectionClass="NSMutableArray" id="xKn-D2-HfY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="II5-LY-uTh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
