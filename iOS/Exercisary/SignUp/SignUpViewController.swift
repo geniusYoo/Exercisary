@@ -14,7 +14,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     
-    let confirmAlert = UIAlertController(title: "Exercisary 회원 가입", message: "아래 정보가 맞습니까?", preferredStyle: .alert)
+    let confirmAlert = UIAlertController(title: "회원 정보 확인", message: "아래 정보가 맞습니까?", preferredStyle: .alert)
 
    
     override func viewDidLoad() {
@@ -24,18 +24,24 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         pwTextField.delegate = self
 
     }
-    // UITextFieldDelegate 메서드 - 텍스트필드가 터치되었을 때 호출됨
+        // UITextFieldDelegate 메서드 - 텍스트필드가 터치되었을 때 호출됨
         func textFieldDidBeginEditing(_ textField: UITextField) {
             // 키보드 올리기
-            print("call")
             textField.becomeFirstResponder()
         }
 
         // UITextFieldDelegate 메서드 - Return 키를 누를 때 호출됨
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            // 편집 완료 후 키보드 내리기
-            textField.resignFirstResponder()
-
+            if textField == self.nameTextField {
+                self.idTextField.becomeFirstResponder()
+            }
+            else if textField == idTextField {
+              pwTextField.becomeFirstResponder()
+            }
+            else if textField == pwTextField {
+                pwTextField.resignFirstResponder()
+                confirm()
+            }
             return true
         }
 
@@ -47,21 +53,50 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func confirmButtonTapped(_ sender: Any) {
-        var id = idTextField.text
-        var name = nameTextField.text
-        var pw = pwTextField.text
+        confirm()
+    }
+    
+    private func confirm() {
+        var userId = idTextField.text
+        var userName = nameTextField.text
+        var password = pwTextField.text
         
-        confirmAlert.message = "아래 정보가 맞습니까? \n 아이디 : \(id) \n 이름 : \(name)"
+        let msg = "\n이름 : \(userName!) \n\n아이디 : \(userId!)\n"
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.left
+
+        let messageText = NSMutableAttributedString(
+            string: msg,
+            attributes: [
+                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15.0)
+             ]
+        )
+
+        confirmAlert.setValue(messageText, forKey: "attributedMessage")
+        
         self.present(self.confirmAlert, animated: true, completion: nil)
         confirmAlert.addAction(UIAlertAction(title: "맞아요", style: .default) { action in
             
-            
+            DispatchQueue.global().async { // 서브스레드 비동기 처리 코드 - network
+                let server = Server()
+                server.signUp(requestURL: "signup", requestBody: ["userId":userId,"password":password,"userName":userName], completion: <#T##(URLResponse) -> Void#>)
+                
+            }
+            let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
+
+            let vc = storyboard.instantiateViewController(withIdentifier: "Select") as! SelectViewController
+            vc.modalPresentationStyle = .fullScreen
+            vc.userName = self.nameTextField.text
+            self.present(vc, animated: true)
         })
 
         confirmAlert.addAction(UIAlertAction(title: "아니예요", style: .cancel) { action in
             self.dismiss(animated: true)
         })
     }
+    
     
 
 
