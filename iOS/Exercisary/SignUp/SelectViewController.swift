@@ -65,7 +65,7 @@ class SelectViewController: UIViewController, UITextFieldDelegate {
         
         DispatchQueue.global().async { [self] in // 서브스레드 비동기 처리 코드 - network
             let server = Server()
-            server.signUp(requestURL: "signup", requestBody: ["userId":self.user.userId,"password":self.user.password,"userName":self.user.userName,"preferredType":self.preferredType]) { (data, response, error) in
+            server.signUp(requestURL: "signup", requestBody: ["userId":user.userId,"password":user.password,"userName":user.userName,"preferredType":preferredType]) { (data, response, error) in
                 if let error = error {
                     print("Error: \(error)")
                     return

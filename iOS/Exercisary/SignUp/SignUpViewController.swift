@@ -13,9 +13,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var pwTextField: UITextField!
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var duplicateCheckButton: UIButton!
     
     let confirmAlert = UIAlertController(title: "회원 정보 확인", message: "아래 정보가 맞습니까?", preferredStyle: .alert)
-
+    let server = Server()
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +57,41 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         confirm()
     }
     
+    @IBAction func existButtonTapped(_ sender: Any) {
+        var id = idTextField.text ?? ""
+        if id == "" {
+            self.duplicateCheckButton.setTitle("사용불가", for: .normal)
+        }
+        else {
+            DispatchQueue.global().async { [self] in
+                server.postDataToServer(requestURL: "duplicateCheck", requestData: ["userId":id]) { (data, response, error) in
+                    if let error = error {
+                        print("Error: \(error)")
+                        return
+                    }
+                    if let data = data {
+                        if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
+                           let json = jsonObject as? [String: Any],
+                           let status = json["status"] as? String? ?? "" {
+                            if status == "succeed" {
+                                DispatchQueue.main.async {
+                                    self.duplicateCheckButton.setTitle("사용가능", for: .normal)
+                                }
+                            }
+                            else {
+                                DispatchQueue.main.async {
+                                    self.duplicateCheckButton.setTitle("중복", for: .normal)
+                                    self.idTextField.text = ""
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+        
+    }
     private func confirm() {
         var userId = idTextField.text
         var userName = nameTextField.text

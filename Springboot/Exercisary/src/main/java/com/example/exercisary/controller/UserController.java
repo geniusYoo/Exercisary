@@ -23,6 +23,43 @@ public class UserController {
     private UserService userService;
 
 //    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @PostMapping("/duplicateCheck")
+    public ResponseEntity<?> duplicateCheckById(@RequestBody UserDTO userDTO) {
+        try {
+            log.info("enter duplicate check");
+            if (userDTO.getUserId() == null) {
+                throw new RuntimeException("Invaild access");
+            }
+
+            // 아이디가 중복인지 아닌지 bool 값으로 리턴받음
+            boolean flag = userService.duplicateCheck(userDTO.getUserId());
+
+            ResponseDTO responseDTO = new ResponseDTO();
+            if (flag) { // 중복이 아님, 아이디 생성 가능
+                responseDTO = ResponseDTO.builder()
+                        .info("id duplicate check")
+                        .status("succeed")
+                        .build();
+            }
+
+            else { // 중복임, 아이디 생성 불가
+                responseDTO = ResponseDTO.builder()
+                        .info("id duplicate check")
+                        .status("failed")
+                        .build();
+            }
+            log.info(String.valueOf(responseDTO.getStatus()));
+            return ResponseEntity.ok().body(responseDTO);
+
+        } catch (Exception e) {
+            ResponseDTO responseDTO = ResponseDTO.builder()
+                    .info("id duplicate check")
+                    .error(e.getMessage())
+                    .status("failed")
+                    .build();
+            return ResponseEntity.badRequest().body(responseDTO);
+        }
+    }
 
     // 회원가입
     @PostMapping("/signup")

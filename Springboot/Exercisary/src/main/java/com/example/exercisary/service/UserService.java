@@ -34,6 +34,14 @@ public class UserService {
         return userRepository.save(userEntity);
     }
 
+    // 아이디 중복 확인
+    public boolean duplicateCheck(String userId) {
+        if(userRepository.existsById(userId)) {
+            log.warn("id already exists {}", userId);
+            return false;
+        }
+        else return true;
+    }
     // 로그인 시, userId와 password 매칭해서 확인해주는 함수
 //    public UserEntity getByCredentials(final String userId, final String password, final PasswordEncoder encoder) {
 //        final UserEntity originalUser = userRepository.findByUserId(userId);
