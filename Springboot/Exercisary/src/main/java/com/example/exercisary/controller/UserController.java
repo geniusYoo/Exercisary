@@ -7,8 +7,8 @@ import com.example.exercisary.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,13 +22,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     // 회원가입
     @PostMapping("/signup")
     public ResponseEntity<?> register(@RequestBody UserDTO userDTO) {
         try {
 
+            log.info("enter signup");
             if (userDTO == null || userDTO.getPassword() == null) {
                 throw new RuntimeException("Invaild access");
             }
@@ -41,6 +42,7 @@ public class UserController {
             final UserDTO responseUserDTO = UserDTO.builder()
                     .userId(userDTO.getUserId())
                     .userName(userDTO.getUserName())
+                    .preferredType(userDTO.getPreferredType())
                     .build();
 
             ResponseDTO responseDTO = ResponseDTO.builder()
@@ -66,8 +68,8 @@ public class UserController {
     public ResponseEntity<?> authenticate(@RequestBody UserDTO userDTO) {
 
         // 클라이언트에서 넘겨진 정보를 통해 아이디와 비밀번호를 매칭
-        UserEntity user = userService.getByCredentials(userDTO.getUserId(), userDTO.getPassword(), passwordEncoder);
-
+//        UserEntity user = userService.getByCredentials(userDTO.getUserId(), userDTO.getPassword(), passwordEncoder);
+        UserEntity user = new UserEntity();
         if (user != null) {
             //이때만 특별히 toEntity()를 사용하지 않고 빌더를 사용해 토큰을 붙여서 보내줌
             final UserDTO responseUserDTO = UserDTO.builder()

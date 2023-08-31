@@ -79,16 +79,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.present(self.confirmAlert, animated: true, completion: nil)
         confirmAlert.addAction(UIAlertAction(title: "맞아요", style: .default) { action in
             
-            DispatchQueue.global().async { // 서브스레드 비동기 처리 코드 - network
-                let server = Server()
-                server.signUp(requestURL: "signup", requestBody: ["userId":userId,"password":password,"userName":userName], completion: <#T##(URLResponse) -> Void#>)
-                
-            }
             let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
 
             let vc = storyboard.instantiateViewController(withIdentifier: "Select") as! SelectViewController
             vc.modalPresentationStyle = .fullScreen
-            vc.userName = self.nameTextField.text
+            var user = UserInfo(userId: self.idTextField.text ?? "", userName: self.nameTextField.text ?? "", password: self.pwTextField.text ?? "", preferredType: "")
+            vc.user = user
             self.present(vc, animated: true)
         })
 

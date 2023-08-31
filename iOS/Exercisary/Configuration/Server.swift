@@ -8,10 +8,10 @@
 import Foundation
 
 class Server {
-    var baseURL = "http://3.35.149.87:8080/"
+    var baseURL = "http://localhost:9090/"
     var result: String = ""
     
-    func signUp(requestURL: String, requestBody:[String:Any], completion: @escaping (URLResponse) -> Void){
+    func signUp(requestURL: String, requestBody:[String:Any], completion: @escaping (Data?, URLResponse?, Error?) -> Void){
         guard let url = URL(string: Server().baseURL + requestURL) else {return}
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -24,7 +24,7 @@ class Server {
         let task = session.dataTask(with: request) { (data, response, error) in
             guard let data = data else { return } // 응답 데이터가 nil이 아닌지 확인.
             if let responseString = String(data: data, encoding: .utf8) {
-                completion(response ?? URLResponse())
+                completion(data, response, error)
             }
             
         }

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -35,14 +35,14 @@ public class UserService {
     }
 
     // 로그인 시, userId와 password 매칭해서 확인해주는 함수
-    public UserEntity getByCredentials(final String userId, final String password, final PasswordEncoder encoder) {
-        final UserEntity originalUser = userRepository.findByUserId(userId);
-        log.info("id 검색 완료! " + originalUser);
-        if(originalUser != null && encoder.matches(password, originalUser.getPassword())) {
-            return originalUser;
-        }
-        return null;
-    }
+//    public UserEntity getByCredentials(final String userId, final String password, final PasswordEncoder encoder) {
+//        final UserEntity originalUser = userRepository.findByUserId(userId);
+//        log.info("id 검색 완료! " + originalUser);
+//        if(originalUser != null && encoder.matches(password, originalUser.getPassword())) {
+//            return originalUser;
+//        }
+//        return null;
+//    }
 
 
 

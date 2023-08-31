@@ -12,7 +12,10 @@ class SelectViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var typeTextField: UITextField!
     @IBOutlet var radioButtons: [UIButton]!
     
-    var userName: String!
+    var user: UserInfo!
+    var selectedButton = -1
+    var preferredType: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         typeTextField.delegate = self
@@ -39,6 +42,7 @@ class SelectViewController: UIViewController, UITextFieldDelegate {
             if $0.tag == sender.tag {
 //                $0.backgroundColor = UIColor.systemTeal
                 $0.layer.backgroundColor = UIColor.systemTeal.cgColor
+                selectedButton = sender.tag
             } else {
                 $0.backgroundColor = UIColor.lightGray
             }
@@ -52,14 +56,37 @@ class SelectViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func startButtonTapped(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
-        let vc = storyboard.instantiateViewController(withIdentifier: "Home") as! ViewController
-        let navigationController = UINavigationController(rootViewController: vc)
+        if selectedButton == -1 {
+            preferredType = ""
+        }
+        else {
+            preferredType = radioButtons[selectedButton].currentTitle!
+        }
         
-        navigationController.modalPresentationStyle = .fullScreen
-        vc.userName = userName
+        DispatchQueue.global().async { [self] in // 서브스레드 비동기 처리 코드 - network
+            let server = Server()
+            server.signUp(requestURL: "signup", requestBody: ["userId":self.user.userId,"password":self.user.password,"userName":self.user.userName,"preferredType":self.preferredType]) { (data, response, error) in
+                if let error = error {
+                    print("Error: \(error)")
+                    return
+                }
+                print("network call complete")
+            }
+            
+            DispatchQueue.main.async {
+                
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
-        self.present(navigationController, animated: true, completion: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "Home") as! ViewController
+                let navigationController = UINavigationController(rootViewController: vc)
+                
+                navigationController.modalPresentationStyle = .fullScreen
+                vc.userName = user.userName
+
+                self.present(navigationController, animated: true, completion: nil)
+            }
+        }
+        
     }
 }

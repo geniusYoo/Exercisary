@@ -14,11 +14,13 @@ public class UserDTO {
     private String userId;
     private String password;
     private String userName;
+    private String preferredType;
 
     public UserDTO(final UserEntity entity) {
         this.userId = entity.getUserId();
         this.userName = entity.getUserName();
         this.password = entity.getPassword();
+        this.preferredType = entity.getPreferredType();
     }
 
     public static UserEntity toEntity(UserDTO userDTO){
@@ -26,6 +28,7 @@ public class UserDTO {
                 .userId(userDTO.getUserId())
                 .password(userDTO.getPassword())
                 .userName(userDTO.getUserName())
+                .preferredType(userDTO.getPreferredType())
                 .build();
     }
 }
