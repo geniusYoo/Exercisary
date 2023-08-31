@@ -74,17 +74,10 @@ class SelectViewController: UIViewController, UITextFieldDelegate {
             }
             
             DispatchQueue.main.async {
-                
-                
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
-                let vc = storyboard.instantiateViewController(withIdentifier: "Home") as! ViewController
-                let navigationController = UINavigationController(rootViewController: vc)
-                
-                navigationController.modalPresentationStyle = .fullScreen
-                vc.userName = user.userName
-
-                self.present(navigationController, animated: true, completion: nil)
+                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "Login") as! LoginViewController
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
             }
         }
         

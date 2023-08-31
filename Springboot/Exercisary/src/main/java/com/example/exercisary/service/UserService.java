@@ -43,14 +43,16 @@ public class UserService {
         else return true;
     }
     // 로그인 시, userId와 password 매칭해서 확인해주는 함수
-//    public UserEntity getByCredentials(final String userId, final String password, final PasswordEncoder encoder) {
-//        final UserEntity originalUser = userRepository.findByUserId(userId);
-//        log.info("id 검색 완료! " + originalUser);
-//        if(originalUser != null && encoder.matches(password, originalUser.getPassword())) {
-//            return originalUser;
-//        }
-//        return null;
-//    }
+    public UserEntity getByCredentials(final String userId, final String password) {
+        final UserEntity originalUser = userRepository.findByUserId(userId);
+        log.info("id 검색 완료! " + originalUser);
+        log.info("id {} , pw {}", userId, password);
+        if(originalUser != null && originalUser.getPassword().equals(password)) {
+            log.info("user match success!");
+            return originalUser;
+        }
+        return null;
+    }
 
 
 

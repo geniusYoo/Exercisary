@@ -22,7 +22,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-//    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     @PostMapping("/duplicateCheck")
     public ResponseEntity<?> duplicateCheckById(@RequestBody UserDTO userDTO) {
         try {
@@ -63,7 +62,7 @@ public class UserController {
 
     // 회원가입
     @PostMapping("/signup")
-    public ResponseEntity<?> register(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<?> signup(@RequestBody UserDTO userDTO) {
         try {
 
             log.info("enter signup");
@@ -102,13 +101,12 @@ public class UserController {
 
     // 로그인
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticate(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<?> signin(@RequestBody UserDTO userDTO) {
 
         // 클라이언트에서 넘겨진 정보를 통해 아이디와 비밀번호를 매칭
-//        UserEntity user = userService.getByCredentials(userDTO.getUserId(), userDTO.getPassword(), passwordEncoder);
-        UserEntity user = new UserEntity();
-        if (user != null) {
-            //이때만 특별히 toEntity()를 사용하지 않고 빌더를 사용해 토큰을 붙여서 보내줌
+        UserEntity user = userService.getByCredentials(userDTO.getUserId(), userDTO.getPassword());
+
+        if (user != null) { // null이 아니면 id-pw 매칭 성공
             final UserDTO responseUserDTO = UserDTO.builder()
                     .userId(user.getUserId())
                     .userName(user.getUserName())
