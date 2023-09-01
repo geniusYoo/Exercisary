@@ -22,6 +22,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    // id 중복확인
     @PostMapping("/duplicateCheck")
     public ResponseEntity<?> duplicateCheckById(@RequestBody UserDTO userDTO) {
         try {

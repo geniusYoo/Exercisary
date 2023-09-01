@@ -52,8 +52,8 @@
                                             </datePicker>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="200" translatesAutoresizingMaskIntoConstraints="NO" id="bft-qy-z3O">
-                                        <rect key="frame" x="0.0" y="80" width="341" height="34.333333333333343"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="bft-qy-z3O">
+                                        <rect key="frame" x="0.0" y="80" width="156" height="34.333333333333343"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Aeh-y6-8rn" userLabel="kind stack view">
                                                 <rect key="frame" x="0.0" y="0.0" width="106.66666666666667" height="34.333333333333336"/>
@@ -73,11 +73,14 @@
                                                         <buttonConfiguration key="configuration" style="filled" title="수영" cornerStyle="capsule">
                                                             <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="TypeButtonTapped:" destination="gFO-cu-lEi" eventType="touchUpInside" id="VW0-8H-7nW"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kmR-ay-iQ1">
-                                                <rect key="frame" x="306.66666666666669" y="0.0" width="34.333333333333314" height="34.333333333333336"/>
+                                                <rect key="frame" x="121.66666666666664" y="0.0" width="34.333333333333329" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="tinted" title="+">
                                                     <color key="baseForegroundColor" systemColor="systemTealColor"/>
@@ -276,11 +279,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="rMb-cm-j5J">
-                                                <rect key="frame" x="18.333333333333343" y="166" width="336.66666666666663" height="267"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="rMb-cm-j5J">
+                                                <rect key="frame" x="18.333333333333343" y="160.99999999999997" width="336.66666666666663" height="357.33333333333326"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="GMd-nh-jqf">
-                                                        <rect key="frame" x="0.0" y="0.0" width="336.66666666666669" height="75.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="336.66666666666669" height="71.333333333333329"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="관심 있는 운동들을 선택하세요 😎" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBK-Or-WDe">
                                                                 <rect key="frame" x="0.0" y="0.0" width="231.66666666666666" height="20.333333333333332"/>
@@ -288,43 +291,46 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xFV-2p-LZu">
-                                                                <rect key="frame" x="0.0" y="41.333333333333314" width="297.33333333333331" height="34.333333333333343"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xFV-2p-LZu">
+                                                                <rect key="frame" x="0.0" y="41.333333333333314" width="304" height="30"/>
                                                                 <subviews>
                                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sf-jW-Odn">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="53.666666666666664" height="34.333333333333336"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" title="헬스" cornerStyle="capsule">
-                                                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </buttonConfiguration>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="70" height="30"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="70" id="bXx-kg-I0O"/>
+                                                                        </constraints>
+                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                        <state key="normal" title="헬스">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
                                                                     </button>
                                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Au-dk-MQj">
-                                                                        <rect key="frame" x="61.666666666666671" y="0.0" width="83.000000000000014" height="34.333333333333336"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" title="크로스핏" cornerStyle="capsule">
-                                                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </buttonConfiguration>
+                                                                        <rect key="frame" x="78" y="0.0" width="70" height="30"/>
+                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                        <state key="normal" title="크로스핏">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
                                                                     </button>
                                                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FlU-eC-tNx">
-                                                                        <rect key="frame" x="152.66666666666666" y="0.0" width="53.666666666666657" height="34.333333333333336"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" title="수영" cornerStyle="capsule">
-                                                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </buttonConfiguration>
+                                                                        <rect key="frame" x="156" y="0.0" width="70" height="30"/>
+                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                        <state key="normal" title="수영">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
                                                                     </button>
                                                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="seL-Hv-asg">
-                                                                        <rect key="frame" x="214.33333333333331" y="0.0" width="83" height="34.333333333333336"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" title="필라테스" cornerStyle="capsule">
-                                                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </buttonConfiguration>
+                                                                        <rect key="frame" x="234" y="0.0" width="70" height="30"/>
+                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                        <state key="normal" title="필라테스">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="h1f-83-YEB">
-                                                        <rect key="frame" x="0.0" y="175.66666666666669" width="336.66666666666669" height="91.333333333333314"/>
+                                                        <rect key="frame" x="0.0" y="151.33333333333331" width="336.66666666666669" height="91.333333333333314"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리스트에 없는 운동을 추가하세요 🤩" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GrC-UC-qRy">
                                                                 <rect key="frame" x="0.0" y="0.0" width="246.33333333333334" height="20.333333333333332"/>
@@ -333,7 +339,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G6u-LW-Kg1">
-                                                                <rect key="frame" x="0.0" y="40.333333333333314" width="336.66666666666669" height="51"/>
+                                                                <rect key="frame" x="0.0" y="40.333333333333371" width="336.66666666666669" height="51"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="운동 종류 입력" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0E0-Wj-iTq">
                                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
@@ -363,6 +369,17 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2G-sk-GH4">
+                                                        <rect key="frame" x="0.0" y="322.66666666666663" width="336.66666666666669" height="34.666666666666686"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="저장">
+                                                            <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                            <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="saveButtonTapped:" destination="oPS-Tn-Wpr" eventType="touchUpInside" id="6lq-i6-HBr"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -371,7 +388,7 @@
                                             <constraint firstItem="Yfw-9G-eeo" firstAttribute="top" secondItem="za7-OX-LRQ" secondAttribute="top" constant="30" id="1Fr-eU-pDC"/>
                                             <constraint firstItem="Yfw-9G-eeo" firstAttribute="centerX" secondItem="za7-OX-LRQ" secondAttribute="centerX" id="TlD-Au-4mY"/>
                                             <constraint firstItem="rMb-cm-j5J" firstAttribute="centerX" secondItem="za7-OX-LRQ" secondAttribute="centerX" id="bxo-Ps-Pze"/>
-                                            <constraint firstItem="rMb-cm-j5J" firstAttribute="centerY" secondItem="za7-OX-LRQ" secondAttribute="centerY" id="dZv-VV-Tt2"/>
+                                            <constraint firstItem="rMb-cm-j5J" firstAttribute="centerY" secondItem="za7-OX-LRQ" secondAttribute="centerY" constant="40" id="dZv-VV-Tt2"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -385,7 +402,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7hf-cI-bbJ"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7hf-cI-bbJ" firstAttribute="leading" secondItem="wrx-fK-1TN" secondAttribute="leading" id="PNS-J8-4zT"/>
                             <constraint firstItem="7hf-cI-bbJ" firstAttribute="bottom" secondItem="wrx-fK-1TN" secondAttribute="bottom" id="UEf-os-sZ0"/>
@@ -410,7 +427,7 @@
         <!--Navigation Controller-->
         <scene sceneID="v1D-LB-qoR">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1GO-6Z-3z6" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="1GO-6Z-3z6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pzE-ie-2NB">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -612,9 +629,9 @@
                                                     <outlet property="contentLabel" destination="G1c-3u-aJd" id="6ea-7b-V7w"/>
                                                     <outlet property="imageView1" destination="rom-3U-MtA" id="6r8-RU-bx5"/>
                                                     <outlet property="imageView2" destination="tWR-We-Nca" id="rOb-39-Xob"/>
-                                                    <outlet property="kindLabel" destination="UfG-AG-Rjo" id="Wpl-wm-1eo"/>
                                                     <outlet property="memoLabel" destination="dG3-Dd-Lhj" id="18x-Df-9TM"/>
                                                     <outlet property="timeLabel" destination="Nex-YK-PfV" id="ztz-iO-fFe"/>
+                                                    <outlet property="typeLabel" destination="UfG-AG-Rjo" id="ntG-mv-zdu"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>

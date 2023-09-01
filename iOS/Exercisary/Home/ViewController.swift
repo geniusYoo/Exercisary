@@ -38,7 +38,10 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        calendarView.reloadData()
+        
+        Exercise.exercise.exercices = []
+        serverCall()
+        
     }
 
     override func viewDidLoad() {
@@ -48,8 +51,8 @@ class ViewController: UIViewController {
         backgroundView.layer.borderColor = UIColor.systemTeal.cgColor
         backgroundView.layer.borderWidth = 2
         backgroundView.layer.cornerRadius = 20
-        
         userNameLabel.text = userName
+        calendarView.reloadData()
     }
     
     // segmentControl로 주간/월간 전환할 때
@@ -70,19 +73,16 @@ class ViewController: UIViewController {
         
         vc.date = currentDate
         vc.flag = 0
+        vc.userId = userId
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func modifyButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
         let vc = storyboard.instantiateViewController(withIdentifier: "Add") as! AddExerciseViewController
-        
         vc.flag = 1
-
-        vc.data = data ?? ExerciseInfo(key: "", date: Date(), type: "", time: "", content: "", memo: "", photoUrl: "", userId: "")
-        
-        
+        vc.userId = userId
+        vc.data = data ?? ExerciseInfo(key: "", date: "", type: "", time: "", content: "", memo: "", photoUrl: "", userId: "")
         
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -110,27 +110,74 @@ class ViewController: UIViewController {
 //        })
     }
     
+    func serverCall() {
+            print("userid \(userId!)")
+            let server = Server()
+            
+        server.getAllData(requestURL: "exercise/\(userId!)") { [self] (data, response, error) in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+            if let response = response {
+                print(response)
+            }
+                if let data = data {
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                        
+                        if let dataArray = json?["data"] as? [[String: Any]] {
+                            for dataEntry in dataArray {
+                                if let key = dataEntry["key"] as? String {
+                                    let date = dataEntry["date"] as? String ?? ""
+                                    let type = dataEntry["type"] as? String ?? ""
+                                    let time = dataEntry["time"] as? String ?? ""
+                                    let content = dataEntry["content"] as? String ?? ""
+                                    let memo = dataEntry["memo"] as? String ?? ""
+                                    let userId = dataEntry["userId"] as? String ?? ""
+                                    let photoUrl = dataEntry["photoUrl"] as? String ?? ""
+                                    
+                                    let exerciseData = ExerciseInfo(
+                                        key: key,
+                                        date: date,
+                                        type: type,
+                                        time: time,
+                                        content: content,
+                                        memo: memo,
+                                        photoUrl: photoUrl,
+                                        userId: userId
+                                    )
+                                    Exercise.exercise.appendExerciseData(data :exerciseData)
+                                }
+                            }
+                        }
+                    }
+                    catch {
+                        print("JSON serialization error: \(error)")
+                    }
+                }
+            }
+        }
     
     
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return Exercise.exercise.exercices.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
         let cell = detailCollectionView.dequeueReusableCell(withReuseIdentifier: "DetailCollectionViewCell", for: indexPath) as! DetailCollectionViewCell
-        cell.kindLabel.text = "수영"
-        cell.timeLabel.text = "2h"
-        cell.contentLabel.text = "IM 2바퀴, 운동량 1200M"
-        cell.memoLabel.text = "진짜 힘든 날... 운동량 1100 달성! 팔로만 자유영 하는거 너무 힘들어.. 웨이트 병행해야겠다는 생각이 너무 많이 든 날 .. 팔 힘 기르자!"
         
+        let exercises = Exercise.exercise.exercices[indexPath.item]
         
-        var temp = ExerciseInfo(key: "", date: currentDate, type: "수영", time: "2h", content: "IM 2바퀴, 운동량 1200M", memo: "진짜 힘든 날... 운동량 1100 달성! 팔로만 자유영 하는거 너무 힘들어.. 웨이트 병행해야겠다는 생각이 너무 많이 든 날 .. 팔 힘 기르자!", photoUrl: "", userId: "")
+        cell.typeLabel.text = exercises.type
+        cell.timeLabel.text = exercises.time
+        cell.contentLabel.text = exercises.content
+        cell.memoLabel.text = exercises.memo
         
-        data = temp
+        data = Exercise.exercise.exercices[indexPath.item]
         print("call datasource")
         return cell
     }
@@ -158,7 +205,7 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
         
         currentDate = date
         dateLabel.text = dateToString(dateFormatString: "M월 dd일", date: date)
-        
+        detailCollectionView.reloadData()
         changeCalendarScope("week")
         segmentControl.selectedSegmentIndex = 1
 

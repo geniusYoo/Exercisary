@@ -9,7 +9,7 @@ import Foundation
 
 struct ExerciseInfo {
     var key: String // 고유 키
-    var date: Date // 운동한 날짜
+    var date: String // 운동한 날짜
     var type: String // 운동 종류
     var time: String // 운동한 시간
     var content: String // 운동 내용

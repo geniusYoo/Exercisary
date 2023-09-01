@@ -9,7 +9,7 @@ import UIKit
 
 class DetailCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var kindLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!

@@ -33,18 +33,24 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
     var image: UIImage!
     let alertController = UIAlertController(title: "올릴 방식을 선택하세요", message: "사진 찍기 또는 앨범에서 선택", preferredStyle: .actionSheet)
     
-    var data = ExerciseInfo(key: "", date: Date(), type: "", time: "", content: "", memo: "", photoUrl: "", userId: "")
+    var data = ExerciseInfo(key: "", date: "", type: "", time: "", content: "", memo: "", photoUrl: "", userId: "")
     
-    var dateString = ""
-    var type = ""
-    var time = ""
-    var content = ""
-    var memo = ""
     var userId = ""
     
     var date = Date()
     
     var flag = 0 // 생성인지, 수정인지 알 수 있는 플래그, 0이면 생성 1이면 수정
+    
+    var receiveType = ""
+    
+    let server = Server()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("add vwa call")
+        typeButton.setTitle(receiveType, for: .normal)
+        print("type : \(receiveType)")
+        backgroundView.reloadInputViews()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +63,11 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
             self.view.endEditing(true)
       }
+    
+    func sendingType(type: String) {
+        self.receiveType = type
+        print("type!! \(type)")
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         // 키보드 내리면서 동작
@@ -88,7 +99,7 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
     
     // 수정 시, 데이터를 받아서 채워넣기 위한 메소드
     func setupUI() {
-        datePicker.date = data.date ?? Date()
+        datePicker.date = stringToDate(dateString: data.date, format: "yyyy-MM-dd")
         typeButton.setTitle(data.type, for: .normal)
         contentTextField.text = data.content ?? ""
         memoTextField.text = data.memo ?? ""
@@ -151,9 +162,8 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
         let time = formatDuration(duration: timePicker.countDownDuration) ?? "" // 사용자 입력에서 운동 시간을 가져옴
         let memo = memoTextField.text ?? ""// 사용자 입력에서 메모를 가져옴
         let content = contentTextField.text ?? ""
-        let dateString = dateString ?? ""
-        let date = dateFromString(dateString: dateString, format: "yyyy.MM.dd")
-    
+        let date = dateToString(date: datePicker.date, format: "yyyy.MM.dd")
+        
         let exerciseData = ExerciseInfo(
             key: UUID().uuidString,
             date: date,
@@ -165,15 +175,44 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
             userId: userId
         )
         
-        print("exercise data : \(exerciseData)")
+        DispatchQueue.global().async { [self] in
+            server.postDataToServer(requestURL: "exercise", requestData: [
+                "key" : exerciseData.key,
+                "date" : exerciseData.date,
+                "type" : exerciseData.type,
+                "time" : exerciseData.time,
+                "content" : exerciseData.content,
+                "memo" : exerciseData.memo,
+                "photoUrl" : exerciseData.photoUrl,
+                "userId" : exerciseData.userId
+                
+             ], completion: { (data, response, error) in
+                 if let error = error {
+                     print("Error: \(error)")
+                     return
+                 }
+                 print(response)
+             })
+            
+            DispatchQueue.main.async {
+                guard let vc = self.navigationController?.viewControllers[0] as? ViewController else{
+                    return
+                }
+
+                navigationController?.popViewController(animated: true)
+                print("exercise data : \(exerciseData)")
+            }
+        }
+        
+       
     }
         
     @IBAction func TypeButtonTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
         let vc = storyboard.instantiateViewController(withIdentifier: "Modify") as! ModifyExerciseViewController
-        vc.modalPresentationStyle = .formSheet
-        present(vc, animated: true)
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -190,7 +229,7 @@ extension AddExerciseViewController {
         var formattedString = ""
         
         if hours > 0 {
-            formattedString += "\(hours)h "
+            formattedString += "\(hours)h"
         }
         
         if minutes > 0 {

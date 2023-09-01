@@ -16,6 +16,8 @@ class ModifyExerciseViewController: UIViewController {
     
     @IBOutlet var radioButtons: [UIButton]!
     
+    var selectedButton = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.layer.cornerRadius = 20
@@ -25,7 +27,6 @@ class ModifyExerciseViewController: UIViewController {
             $0.layer.cornerRadius = 15
             $0.layer.backgroundColor = UIColor.lightGray.cgColor
         }
-        
     }
     
     @objc private func radioButton(_ sender: UIButton) {
@@ -33,6 +34,7 @@ class ModifyExerciseViewController: UIViewController {
             if $0.tag == sender.tag {
 //                $0.backgroundColor = UIColor.systemTeal
                 $0.layer.backgroundColor = UIColor.systemTeal.cgColor
+                selectedButton = sender.tag
             } else {
                 $0.backgroundColor = UIColor.lightGray
             }
@@ -40,8 +42,18 @@ class ModifyExerciseViewController: UIViewController {
     }
 
     @IBAction func addButtonTapped(_ sender: Any) {
-        DispatchQueue.global().async {
-            
+        radioButtons[3].setTitle(kindTextField.text, for: .normal)
+        radioButtons[3].isHidden = false
+        radioButtons[3].backgroundColor = UIColor.systemTeal
+
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        guard let vc = self.navigationController?.viewControllers[1] as? AddExerciseViewController else{
+            return
         }
+        vc.sendingType(type: radioButtons[selectedButton-1].currentTitle ?? "")
+
+        navigationController?.popViewController(animated: true)
     }
 }

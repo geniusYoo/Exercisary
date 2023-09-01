@@ -1,47 +1,80 @@
-//package com.example.exercisary.controller;
-//
-//import com.example.exercisary.dto.ExerciseDTO;
-//import com.example.exercisary.dto.ResponseDTO;
-//import com.example.exercisary.model.ExerciseEntity;
-//import com.example.exercisary.service.ExerciseService;
-//import lombok.extern.slf4j.Slf4j;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.security.core.annotation.AuthenticationPrincipal;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//
-//import java.util.Collections;
-//
-//@Slf4j
-//@Controller
-//@RequestMapping("/exercise")
-//public class ExerciseController {
-//
-//    @Autowired
-//    private ExerciseService exerciseService;
-//
-//    @PostMapping
-//    public ResponseEntity<?> createExercisary(@AuthenticationPrincipal String userId, @RequestBody ExerciseDTO dto) {
-//        try {
-//            ExerciseEntity entity = ExerciseDTO.toEntity(dto);
-//
-//            entity.setUserId(userId);
-//
-//            entity = exerciseService.createExercisary(entity);
-//
-//            ExerciseDTO dtos = new ExerciseDTO(entity);
-//
-//            ResponseDTO<ExerciseDTO> response = ResponseDTO.<ExerciseDTO>builder().data(Collections.singletonList(dtos)).status("succeed").build();
-//
-//            return ResponseEntity.ok().body(response);
-//
-//        } catch(Exception e) {
-//            String error = e.getMessage();
-//            ResponseDTO<ExerciseDTO> response = ResponseDTO.<ExerciseDTO>builder().error(error).build();
-//            return ResponseEntity.badRequest().body(response);
-//        }
-//    }
-//}
+package com.example.exercisary.controller;
+
+import com.example.exercisary.dto.ExerciseDTO;
+import com.example.exercisary.dto.ResponseDTO;
+import com.example.exercisary.model.ExerciseEntity;
+import com.example.exercisary.service.ExerciseService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Slf4j
+@Controller
+@RequestMapping("/exercise")
+public class ExerciseController {
+
+    @Autowired
+    private ExerciseService exerciseService;
+
+    @PostMapping
+    public ResponseEntity<?> createExercisary(@RequestBody ExerciseDTO dto) {
+        try {
+            ExerciseEntity entity = ExerciseDTO.toEntity(dto);
+
+            entity = exerciseService.createExercisary(entity);
+
+            ExerciseDTO dtos = new ExerciseDTO(entity);
+
+            ResponseDTO<ExerciseDTO> response = ResponseDTO.<ExerciseDTO>builder()
+                    .info("create exercisary")
+                    .data(Collections.singletonList(dtos))
+                    .status("succeed")
+                    .build();
+
+            return ResponseEntity.ok().body(response);
+
+        } catch(Exception e) {
+            String error = e.getMessage();
+            ResponseDTO<ExerciseDTO> response = ResponseDTO.<ExerciseDTO>builder()
+                    .info("create exercisary")
+                    .error(error)
+                    .status("failed")
+                    .build();
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> retrieveAllUserExercisaries(@PathVariable("userId") String userId) {
+        log.info("response retrieve");
+
+        try {
+            List<ExerciseEntity> entities = exerciseService.retrieveAllUserExercisaries(userId);
+
+            List<ExerciseDTO> exerciseDTOS = entities.stream().map(ExerciseDTO::new).collect(Collectors.toList());
+
+            ResponseDTO<ExerciseDTO> response = ResponseDTO.<ExerciseDTO>builder()
+                    .info("retrieve all user exercisaries")
+                    .data(exerciseDTOS)
+                    .status("succeed")
+                    .build();
+            log.info("response retrieve : {}", response);
+            return ResponseEntity.ok().body(response);
+
+        } catch(Exception e) {
+            String error = e.getMessage();
+            ResponseDTO<ExerciseDTO> response = ResponseDTO.<ExerciseDTO>builder()
+                    .info("retrieve all user exercisaries")
+                    .error(error)
+                    .status("failed")
+                    .build();
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+}

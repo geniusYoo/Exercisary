@@ -83,17 +83,15 @@ class Server {
         task.resume()
     }
     
-    func getAllData(requestURL: String, token: String, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    func getAllData(requestURL: String, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         guard let url = URL(string: Server().baseURL + requestURL) else {
             completion(nil, nil, nil) // 잘못된 URL이면 completion에 nil 전달
             return
         }
         
         var request = URLRequest(url: url)
-        let header = "Bearer \(token)"
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(header, forHTTPHeaderField: "Authorization")
         
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
