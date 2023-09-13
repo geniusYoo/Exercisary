@@ -28,20 +28,22 @@ class ViewController: UIViewController {
     var selectDateString = ""
     
     var backDate = ""
-    var data: ExerciseInfo? // 사용자가 셀을 클릭할 때마다 셀의 정보가 저장되는 변수
+    
+    var data : [Exercise.Format] = []
+    var filtered : [Exercise.Format] = []
     
     var userName: String! // 회원가입할 때 사용자가 지정한 이름으로 메인 뷰에 표시하기 위한 변수
     var userId: String! // 유저의 아이디를 key로 데이터를 로딩하기 위해
     
-    var currentDate = Date() // Add VC로 넘길 때 클릭했던 날짜를 넘기기 위한 date 변수
     let deleteConfirmAlert = UIAlertController(title: "오운완 삭제", message: "이 오운완을 삭제하시겠습니까?", preferredStyle: .alert) // 삭제 시 띄울 Alert
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        Exercise.exercise.exercices = []
+        Exercise.shared.exercices = []
+        filtered = []
+        data = []
         serverCall()
-        
     }
 
     override func viewDidLoad() {
@@ -61,7 +63,7 @@ class ViewController: UIViewController {
             changeCalendarScope("month")
         } else {
             changeCalendarScope("week")
-            selectDateString = dateToString(dateFormatString: "MM월 dd일", date: selectDate)
+            selectDateString = dateToString(format: "MM월 dd일", date: selectDate)
             dateLabel.text = selectDateString
         }
     }
@@ -71,9 +73,10 @@ class ViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "Add") as! AddExerciseViewController
         
-        vc.date = currentDate
+        vc.date = selectDate
         vc.flag = 0
         vc.userId = userId
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -82,7 +85,7 @@ class ViewController: UIViewController {
         let vc = storyboard.instantiateViewController(withIdentifier: "Add") as! AddExerciseViewController
         vc.flag = 1
         vc.userId = userId
-        vc.data = data ?? ExerciseInfo(key: "", date: "", type: "", time: "", content: "", memo: "", photoUrl: "", userId: "")
+//        vc.data = data ?? Exercise.Format(key: "", date: "", type: "", time: "", content: "", memo: "", photoUrl: "", userId: "")
         
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -128,57 +131,78 @@ class ViewController: UIViewController {
                         
                         if let dataArray = json?["data"] as? [[String: Any]] {
                             for dataEntry in dataArray {
-                                if let key = dataEntry["key"] as? String {
-                                    let date = dataEntry["date"] as? String ?? ""
-                                    let type = dataEntry["type"] as? String ?? ""
-                                    let time = dataEntry["time"] as? String ?? ""
-                                    let content = dataEntry["content"] as? String ?? ""
-                                    let memo = dataEntry["memo"] as? String ?? ""
-                                    let userId = dataEntry["userId"] as? String ?? ""
-                                    let photoUrl = dataEntry["photoUrl"] as? String ?? ""
-                                    
-                                    let exerciseData = ExerciseInfo(
-                                        key: key,
-                                        date: date,
-                                        type: type,
-                                        time: time,
-                                        content: content,
-                                        memo: memo,
-                                        photoUrl: photoUrl,
-                                        userId: userId
-                                    )
-                                    Exercise.exercise.appendExerciseData(data :exerciseData)
-                                }
+                                parseEntry(dataEntry)
                             }
+                            
                         }
+                        DispatchQueue.main.async {
+                            self.updateCollectionView()
+                            self.calendarView.reloadData()
+
+                        }
+
                     }
                     catch {
                         print("JSON serialization error: \(error)")
                     }
                 }
+            
             }
+        
         }
     
+    func parseEntry(_ dataEntry: [String: Any]) {
+        if let key = dataEntry["key"] as? String {
+            let date = dataEntry["date"] as? String ?? ""
+            let type = dataEntry["type"] as? String ?? ""
+            let time = dataEntry["time"] as? String ?? ""
+            let content = dataEntry["content"] as? String ?? ""
+            let memo = dataEntry["memo"] as? String ?? ""
+            let userId = dataEntry["userId"] as? String ?? ""
+            let photoUrl = dataEntry["photoUrl"] as? String ?? ""
+            
+            let exerciseData = Exercise.Format(
+                key: key,
+                date: date,
+                type: type,
+                time: time,
+                content: content,
+                memo: memo,
+                photoUrl: photoUrl,
+                userId: userId
+            )
+            Exercise.shared.appendExerciseData(data :exerciseData)
+            self.filtered.append(exerciseData)
+            print("filtered : \(filtered)")
+        }
+    }
+    
+    func updateCollectionView() {
+        data = filtered.filter { schedule in
+            return schedule.date.contains(dateToString(format: "yyyy.MM.dd", date: selectDate))
+        }
+        print("filtered after : \(filtered)")
+        detailCollectionView.reloadData()
+    }
     
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Exercise.exercise.exercices.count
+        return data.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = detailCollectionView.dequeueReusableCell(withReuseIdentifier: "DetailCollectionViewCell", for: indexPath) as! DetailCollectionViewCell
         
-        let exercises = Exercise.exercise.exercices[indexPath.item]
-        
+        let exercises = data[indexPath.item]
+        print("index : \(indexPath)")
+        print("exercises filter : \(exercises)")
         cell.typeLabel.text = exercises.type
         cell.timeLabel.text = exercises.time
         cell.contentLabel.text = exercises.content
         cell.memoLabel.text = exercises.memo
-        
-        data = Exercise.exercise.exercices[indexPath.item]
-        print("call datasource")
+
         return cell
     }
 
@@ -201,11 +225,12 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         // 선택한 날짜에 해당하는 데이터 가져오기
-        print("date select : \(date)")
         
-        currentDate = date
-        dateLabel.text = dateToString(dateFormatString: "M월 dd일", date: date)
-        detailCollectionView.reloadData()
+        selectDate = date
+        print("date select : \(selectDate)")
+
+        dateLabel.text = dateToString(format: "M월 dd일", date: date)
+        updateCollectionView()
         changeCalendarScope("week")
         segmentControl.selectedSegmentIndex = 1
 
@@ -254,10 +279,18 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
 }
 
 extension ViewController {
-    func dateToString(dateFormatString: String, date: Date) -> String {
+    func dateToString(format: String, date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = dateFormatString
+        dateFormatter.dateFormat = format
         return dateFormatter.string(from: date)
+    }
+    
+    func dateToDate(format: String, date: Date) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.locale = .current
+        let dateString = dateToString(format: format, date: date)
+        return dateFormatter.date(from: dateString)!
     }
 
     func changeCalendarScope(_ scope: String) {

@@ -33,7 +33,7 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
     var image: UIImage!
     let alertController = UIAlertController(title: "올릴 방식을 선택하세요", message: "사진 찍기 또는 앨범에서 선택", preferredStyle: .actionSheet)
     
-    var data = ExerciseInfo(key: "", date: "", type: "", time: "", content: "", memo: "", photoUrl: "", userId: "")
+    var data = Exercise.Format(key: "", date: "", type: "", time: "", content: "", memo: "", photoUrl: "", userId: "")
     
     var userId = ""
     
@@ -164,7 +164,7 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
         let content = contentTextField.text ?? ""
         let date = dateToString(date: datePicker.date, format: "yyyy.MM.dd")
         
-        let exerciseData = ExerciseInfo(
+        let exerciseData = Exercise.Format(
             key: UUID().uuidString,
             date: date,
             type: type,
