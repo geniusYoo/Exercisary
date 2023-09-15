@@ -22,6 +22,7 @@ public class ExerciseController {
     @Autowired
     private ExerciseService exerciseService;
 
+    // CREATE
     @PostMapping
     public ResponseEntity<?> createExercisary(@RequestBody ExerciseDTO dto) {
         try {
@@ -50,6 +51,7 @@ public class ExerciseController {
         }
     }
 
+    // RETRIEVE
     @GetMapping("/{userId}")
     public ResponseEntity<?> retrieveAllUserExercisaries(@PathVariable("userId") String userId) {
         log.info("response retrieve");
@@ -71,6 +73,35 @@ public class ExerciseController {
             String error = e.getMessage();
             ResponseDTO<ExerciseDTO> response = ResponseDTO.<ExerciseDTO>builder()
                     .info("retrieve all user exercisaries")
+                    .error(error)
+                    .status("failed")
+                    .build();
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    // UPDATE
+    @PutMapping
+    public ResponseEntity<?> updateExercisary(@RequestBody ExerciseDTO dto) {
+        try {
+            ExerciseEntity entity = ExerciseDTO.toEntity(dto);
+
+            ExerciseEntity responseEntity = exerciseService.updateExercisary(entity);
+
+            ExerciseDTO dtos = new ExerciseDTO(responseEntity);
+
+            ResponseDTO<ExerciseDTO> response = ResponseDTO.<ExerciseDTO>builder()
+                    .info("update exercisary")
+                    .data(Collections.singletonList(dtos))
+                    .status("succeed")
+                    .build();
+
+            return ResponseEntity.ok().body(response);
+
+        } catch(Exception e) {
+            String error = e.getMessage();
+            ResponseDTO<ExerciseDTO> response = ResponseDTO.<ExerciseDTO>builder()
+                    .info("update exercisary")
                     .error(error)
                     .status("failed")
                     .build();

@@ -100,7 +100,7 @@ class Server {
         task.resume()
     }
 
-    func deleteData(requestURL: String, token: String, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    func deleteData(requestURL: String, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         
         guard let url = URL(string: Server().baseURL + requestURL) else {
             completion(nil, nil, nil) // 잘못된 URL이면 completion에 nil 전달
@@ -108,9 +108,7 @@ class Server {
         }
         
         var request = URLRequest(url: url)
-        let header = "Bearer \(token)"
         request.httpMethod = "DELETE"
-        request.setValue(header, forHTTPHeaderField: "Authorization")
         
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
@@ -119,17 +117,15 @@ class Server {
         task.resume()
     }
     
-    func updateData(requestURL: String, requestData: [String: Any], token: String, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    func updateData(requestURL: String, requestData: [String: Any], completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         guard let url = URL(string: Server().baseURL + requestURL) else {
             completion(nil, nil, nil) // 잘못된 URL이면 completion에 nil 전달
             return
         }
         
         var request = URLRequest(url: url)
-        var header = "Bearer \(token)"
         request.httpMethod = "PUT"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(header, forHTTPHeaderField: "Authorization")
         
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: requestData)

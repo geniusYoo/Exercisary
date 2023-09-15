@@ -85,6 +85,8 @@ class ViewController: UIViewController {
         let vc = storyboard.instantiateViewController(withIdentifier: "Add") as! AddExerciseViewController
         vc.flag = 1
         vc.userId = userId
+        
+        vc.data = data[0]
 //        vc.data = data ?? Exercise.Format(key: "", date: "", type: "", time: "", content: "", memo: "", photoUrl: "", userId: "")
         
         navigationController?.pushViewController(vc, animated: true)

@@ -46,9 +46,6 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
     let server = Server()
     
     override func viewWillAppear(_ animated: Bool) {
-        print("add vwa call")
-        typeButton.setTitle(receiveType, for: .normal)
-        print("type : \(receiveType)")
         backgroundView.reloadInputViews()
     }
     
@@ -100,6 +97,7 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
     // 수정 시, 데이터를 받아서 채워넣기 위한 메소드
     func setupUI() {
         datePicker.date = stringToDate(dateString: data.date, format: "yyyy-MM-dd")
+        print("type : \(data.type)")
         typeButton.setTitle(data.type, for: .normal)
         contentTextField.text = data.content ?? ""
         memoTextField.text = data.memo ?? ""
@@ -176,23 +174,44 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
         )
         
         DispatchQueue.global().async { [self] in
-            server.postDataToServer(requestURL: "exercise", requestData: [
-                "key" : exerciseData.key,
-                "date" : exerciseData.date,
-                "type" : exerciseData.type,
-                "time" : exerciseData.time,
-                "content" : exerciseData.content,
-                "memo" : exerciseData.memo,
-                "photoUrl" : exerciseData.photoUrl,
-                "userId" : exerciseData.userId
-                
-             ], completion: { (data, response, error) in
-                 if let error = error {
-                     print("Error: \(error)")
-                     return
-                 }
-                 print(response)
-             })
+            if flag == 0 { // 생성
+                server.postDataToServer(requestURL: "exercise", requestData: [
+                    "key" : exerciseData.key,
+                    "date" : exerciseData.date,
+                    "type" : exerciseData.type,
+                    "time" : exerciseData.time,
+                    "content" : exerciseData.content,
+                    "memo" : exerciseData.memo,
+                    "photoUrl" : exerciseData.photoUrl,
+                    "userId" : exerciseData.userId
+                    
+                ], completion: { (data, response, error) in
+                    if let error = error {
+                        print("Error: \(error)")
+                        return
+                    }
+                    print(response)
+                })
+            }
+            
+            else { // 수정
+                server.updateData(requestURL: "exercise", requestData: [
+                    "key" : exerciseData.key,
+                    "date" : exerciseData.date,
+                    "type" : exerciseData.type,
+                    "time" : exerciseData.time,
+                    "content" : exerciseData.content,
+                    "memo" : exerciseData.memo,
+                    "photoUrl" : exerciseData.photoUrl,
+                    "userId" : exerciseData.userId
+                ], completion: { (data, response, error) in
+                    if let error = error {
+                        print("Error: \(error)")
+                        return
+                    }
+                    print(response)
+                })
+            }
             
             DispatchQueue.main.async {
                 guard let vc = self.navigationController?.viewControllers[0] as? ViewController else{
