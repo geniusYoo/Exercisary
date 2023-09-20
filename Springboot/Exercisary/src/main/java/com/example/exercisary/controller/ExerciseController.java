@@ -109,4 +109,33 @@ public class ExerciseController {
             return ResponseEntity.badRequest().body(response);
         }
     }
+
+    @DeleteMapping("/{key}")
+    public ResponseEntity<?> deleteSchedule(@PathVariable("key") String key) {
+        try {
+            ExerciseEntity entity = exerciseService.retrieveExercisaryByKey(key);
+
+            List<ExerciseEntity> entities = exerciseService.deleteExercisary(entity);
+
+            List<ExerciseDTO> exerciseDTOS = entities.stream().map(ExerciseDTO::new).collect(Collectors.toList());
+
+            ResponseDTO<ExerciseDTO> response = ResponseDTO.<ExerciseDTO>builder()
+                    .info("delete exercisary")
+                    .data(exerciseDTOS)
+                    .status("succeed")
+                    .build();
+            log.info("response delete : {}", response);
+            return ResponseEntity.ok().body(response);
+
+        } catch(Exception e) {
+            String error = e.getMessage();
+            ResponseDTO<ExerciseDTO> response = ResponseDTO.<ExerciseDTO>builder()
+                    .info("delete exercisary")
+                    .error(error)
+                    .status("failed")
+                    .build();
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
 }

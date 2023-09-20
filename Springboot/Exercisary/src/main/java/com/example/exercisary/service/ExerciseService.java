@@ -2,12 +2,14 @@ package com.example.exercisary.service;
 
 import com.example.exercisary.model.ExerciseEntity;
 import com.example.exercisary.persistence.ExerciseRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class ExerciseService {
 
@@ -54,5 +56,18 @@ public class ExerciseService {
         });
 
         return retrieveExercisaryByKey(entity.getKey());
+    }
+
+    // 삭제
+    public List<ExerciseEntity> deleteExercisary(ExerciseEntity entity) {
+        try {
+            exerciseRepository.delete(entity);
+        } catch(Exception e) {
+            log.error("error deleting entity", entity.getUserId(), e);
+
+            throw new RuntimeException("error deleting entity " + entity.getUserId());
+        }
+
+        return retrieveAllUserExercisaries(entity.getUserId());
     }
 }

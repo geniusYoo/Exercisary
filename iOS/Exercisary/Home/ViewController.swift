@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     var userName: String! // 회원가입할 때 사용자가 지정한 이름으로 메인 뷰에 표시하기 위한 변수
     var userId: String! // 유저의 아이디를 key로 데이터를 로딩하기 위해
     
-    let deleteConfirmAlert = UIAlertController(title: "오운완 삭제", message: "이 오운완을 삭제하시겠습니까?", preferredStyle: .alert) // 삭제 시 띄울 Alert
+    let deleteConfirmAlert = UIAlertController(title: "Exercisary 삭제", message: "이 기록을 삭제하시겠습니까?", preferredStyle: .alert) // 삭제 시 띄울 Alert
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -102,38 +102,62 @@ class ViewController: UIViewController {
     
     // 삭제 버튼이 눌렸을 때
     @IBAction func deleteButtonTapped(_ sender: Any) {
-//        self.present(self.deleteConfirmAlert, animated: true, completion: nil)
-//        deleteConfirmAlert.addAction(UIAlertAction(title: "삭제", style: .destructive) { action in
-//
-//            ExerciseViewModel.shared.deleteEvent(exercise: self.data ?? Exercise(key: "", date: Date(), exerciseType: "", exerciseTime: "", memo: "", photoURL: "")) { result in
-//                switch result {
-//                case .success:
-//                    print("delete success")
-//                    self.viewWillAppear(true)
-//
-//                case .failure:
-//                    print("delete fail")
-//                }
-//            }
-//        })
-//
-//        deleteConfirmAlert.addAction(UIAlertAction(title: "취소", style: .cancel) { action in
-//        self.dismiss(animated: true)
-//        })
+        self.present(self.deleteConfirmAlert, animated: true, completion: nil)
+        deleteConfirmAlert.addAction(UIAlertAction(title: "삭제", style: .destructive) { [self] action in
+            let server = Server()
+            server.deleteData(requestURL: "/exercise/\(data[0].key)") { [self] (data, response, error) in
+                if let error = error {
+                    print("Error: \(error)")
+                    return
+                }
+                if let data = data {
+                    if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
+                       let json = jsonObject as? [String: Any],
+                       let dataArray = json["data"] as? [[String: Any]] {
+                        for dataEntry in dataArray {
+                            if let key = dataEntry["key"] as? String {
+                                let date = dataEntry["date"] as? String ?? ""
+                                let type = dataEntry["type"] as? String ?? ""
+                                let time = dataEntry["time"] as? String ?? ""
+                                let content = dataEntry["content"] as? String ?? ""
+                                let memo = dataEntry["memo"] as? String ?? ""
+                                let userId = dataEntry["userId"] as? String ?? ""
+                                let photoUrl = dataEntry["photoUrl"] as? String ?? ""
+                                
+                                let exerciseData = Exercise.Format(
+                                    key: key,
+                                    date: date,
+                                    type: type,
+                                    time: time,
+                                    content: content,
+                                    memo: memo,
+                                    photoUrl: photoUrl,
+                                    userId: userId
+                                )
+                                Exercise.shared.deleteExerciseData(data :exerciseData)
+                            }
+                        }
+                    }
+                }
+            }
+        })
+        deleteConfirmAlert.addAction(UIAlertAction(title: "취소", style: .cancel) { action in
+            self.dismiss(animated: true)
+        })
     }
     
     func serverCall() {
             print("userid \(userId!)")
             let server = Server()
             
-        server.getAllData(requestURL: "exercise/\(userId!)") { [self] (data, response, error) in
-            if let error = error {
-                print("Error: \(error)")
-                return
-            }
-            if let response = response {
-                print(response)
-            }
+            server.getAllData(requestURL: "exercise/\(userId!)") { [self] (data, response, error) in
+                if let error = error {
+                    print("Error: \(error)")
+                    return
+                }
+                if let response = response {
+                    print(response)
+                }
                 if let data = data {
                     do {
                         let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
@@ -142,23 +166,18 @@ class ViewController: UIViewController {
                             for dataEntry in dataArray {
                                 parseEntry(dataEntry)
                             }
-                            
                         }
                         DispatchQueue.main.async {
                             self.updateCollectionView()
                             self.calendarView.reloadData()
-
                         }
-
                     }
                     catch {
                         print("JSON serialization error: \(error)")
                     }
                 }
-            
             }
-        
-        }
+    }
     
     func parseEntry(_ dataEntry: [String: Any]) {
         if let key = dataEntry["key"] as? String {
@@ -379,3 +398,21 @@ extension ViewController {
         }
 }
 //
+//        self.present(self.deleteConfirmAlert, animated: true, completion: nil)
+//        deleteConfirmAlert.addAction(UIAlertAction(title: "삭제", style: .destructive) { action in
+//
+//            ExerciseViewModel.shared.deleteEvent(exercise: self.data ?? Exercise(key: "", date: Date(), exerciseType: "", exerciseTime: "", memo: "", photoURL: "")) { result in
+//                switch result {
+//                case .success:
+//                    print("delete success")
+//                    self.viewWillAppear(true)
+//
+//                case .failure:
+//                    print("delete fail")
+//                }
+//            }
+//        })
+//
+//        deleteConfirmAlert.addAction(UIAlertAction(title: "취소", style: .cancel) { action in
+//        self.dismiss(animated: true)
+//        })

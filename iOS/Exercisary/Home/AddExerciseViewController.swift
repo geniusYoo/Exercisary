@@ -47,15 +47,7 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         backgroundView.reloadInputViews()
-//        if flag == 0 { // 생성
-//            self.typeButton.setTitle(receiveType, for: .normal)
-//        }
-//        else { // 수정
-//            self.typeButton.setTitle(receiveType, for: .normal)
-//        }
         self.typeButton.setTitle(receiveType, for: .normal)
-
-        print(date)
     }
     
     override func viewDidLoad() {
