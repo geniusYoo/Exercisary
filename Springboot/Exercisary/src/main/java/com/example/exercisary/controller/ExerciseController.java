@@ -84,6 +84,7 @@ public class ExerciseController {
     @PutMapping
     public ResponseEntity<?> updateExercisary(@RequestBody ExerciseDTO dto) {
         try {
+            log.info("update! ${}", dto);
             ExerciseEntity entity = ExerciseDTO.toEntity(dto);
 
             ExerciseEntity responseEntity = exerciseService.updateExercisary(entity);
