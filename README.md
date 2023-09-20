@@ -25,25 +25,27 @@ Exercisary = Exercise + Diary !
 
 ## ✨ Main Features
 
-- **Personal**
-  
-    - 회원 가입 시 내가 평소 선호하는 운동을 미리 선택해 두면, 운동 기록 생성 시에 종류를 일일이 입력하지 않아도 자동으로 입력됩니다.
-      <br>
+- **Personal** : 회원 가입 시 내가 평소 선호하는 운동을 미리 선택해 두면, 운동 기록 생성 시에 종류를 일일이 입력하지 않아도 자동으로 입력됩니다.
+
+<div align="center">
       
-|<img src="https://github.com/HanIpBoy/Documents/blob/master/%EC%9D%B4%EB%AA%A8%EC%A7%80/%EC%9C%A0%EC%98%81%EC%9E%AC%20%EC%9D%B4%EB%AA%A8%EC%A7%80.png" width=200>|<img src="https://github.com/HanIpBoy/Documents/blob/master/%EC%9D%B4%EB%AA%A8%EC%A7%80/%EC%9D%B4%EC%9C%A4%EC%9E%AC%20%EC%9D%B4%EB%AA%A8%EC%A7%80.png" width=200>|
+|<img src="https://github.com/geniusYoo/Exercisary/blob/main/Documents/signup.png" width=200>|<img src="https://github.com/geniusYoo/Exercisary/blob/main/Documents/modify.png" width=200>|
 |:--:|:--:|
 |**회원가입**|**선호 운동 선택**|
 
+</div>
 
 <br>
 
-- **Records**
+- **Records** : 캘린더 형으로, 내가 언제 어떤 운동을 했는지 한 눈에 확인할 수 있습니다.
   
-    - 캘린더 형으로, 내가 언제 어떤 운동을 했는지 한 눈에 확인할 수 있습니다.
-      
-|<img src="https://github.com/HanIpBoy/Documents/blob/master/%EC%9D%B4%EB%AA%A8%EC%A7%80/%EC%9C%A0%EC%98%81%EC%9E%AC%20%EC%9D%B4%EB%AA%A8%EC%A7%80.png" width=200>|<img src="https://github.com/HanIpBoy/Documents/blob/master/%EC%9D%B4%EB%AA%A8%EC%A7%80/%EC%9D%B4%EC%9C%A4%EC%9E%AC%20%EC%9D%B4%EB%AA%A8%EC%A7%80.png" width=200>|<img src="https://github.com/HanIpBoy/Documents/blob/master/%EC%9D%B4%EB%AA%A8%EC%A7%80/%EA%B9%80%EC%A0%95%ED%95%9C%20%EC%9D%B4%EB%AA%A8%EC%A7%80.png" width=200>|<img src="https://github.com/HanIpBoy/Documents/blob/master/%EC%9D%B4%EB%AA%A8%EC%A7%80/%EA%B9%80%EC%A7%84%EC%9B%85%20%EC%9D%B4%EB%AA%A8%EC%A7%80.png" width=200>|
-|:--:|:--:|:--:|:--:|
-|**메인 화면**|**상세 화면**|**생성**|**수정**|
+<div align="center">
+  
+|<img src="https://github.com/geniusYoo/Exercisary/blob/main/Documents/main.png" width=200>|<img src="https://github.com/geniusYoo/Exercisary/blob/main/Documents/detail.png" width=200>|<img src="https://github.com/geniusYoo/Exercisary/blob/main/Documents/write.png" width=200>
+|:--:|:--:|:--:|
+|**메인 화면**|**상세 화면**|**생성**|
+  
+</div>
 
 
 <br />
