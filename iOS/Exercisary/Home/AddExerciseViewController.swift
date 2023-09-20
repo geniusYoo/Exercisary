@@ -47,6 +47,15 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         backgroundView.reloadInputViews()
+//        if flag == 0 { // 생성
+//            self.typeButton.setTitle(receiveType, for: .normal)
+//        }
+//        else { // 수정
+//            self.typeButton.setTitle(receiveType, for: .normal)
+//        }
+        self.typeButton.setTitle(receiveType, for: .normal)
+
+        print(date)
     }
     
     override func viewDidLoad() {
@@ -63,7 +72,8 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
     
     func sendingType(type: String) {
         self.receiveType = type
-        print("type!! \(type)")
+        print("type!! \(type), \(receiveType)")
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
@@ -96,9 +106,8 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
     
     // 수정 시, 데이터를 받아서 채워넣기 위한 메소드
     func setupUI() {
-        datePicker.date = stringToDate(dateString: data.date, format: "yyyy-MM-dd")
+        datePicker.date = date
         print("type : \(data.type)")
-        typeButton.setTitle(data.type, for: .normal)
         contentTextField.text = data.content ?? ""
         memoTextField.text = data.memo ?? ""
         

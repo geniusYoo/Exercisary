@@ -83,13 +83,20 @@ class ViewController: UIViewController {
     @IBAction func modifyButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "Add") as! AddExerciseViewController
-        vc.flag = 1
+        
         vc.userId = userId
-        
-        vc.data = data[0]
-//        vc.data = data ?? Exercise.Format(key: "", date: "", type: "", time: "", content: "", memo: "", photoUrl: "", userId: "")
-        
-        navigationController?.pushViewController(vc, animated: true)
+        if data.isEmpty { // 수정이 아닌 생성일 때
+            vc.date = selectDate
+            vc.flag = 0
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        else {
+            vc.date = selectDate
+            vc.data = data[0]
+            vc.receiveType = data[0].type
+            vc.flag = 1
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     
@@ -228,7 +235,7 @@ extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         // 선택한 날짜에 해당하는 데이터 가져오기
         
-        selectDate = date
+        self.selectDate = date
         print("date select : \(selectDate)")
 
         dateLabel.text = dateToString(format: "M월 dd일", date: date)
