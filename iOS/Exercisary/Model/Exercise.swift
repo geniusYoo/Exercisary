@@ -40,11 +40,14 @@ class Exercise {
         }
     }
     
-    func deleteExerciseData(data: Format) {
+    func deleteExerciseData(data: Format) -> Int {
+        var responseIndex = 0
         if let index = Exercise.shared.exercices.firstIndex(where: { $0.key == data.key }) {
             // 특정 식별자를 가진 아이템의 인덱스를 찾음
             exercices.remove(at: index)
+            responseIndex = index
         }
+        return responseIndex
     }
     
     

@@ -229,7 +229,6 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
                 }
 
                 navigationController?.popViewController(animated: true)
-//                print("exercise data : \(exerciseData)")
             }
         }
         
@@ -243,11 +242,7 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
 }
-
-
 
 extension AddExerciseViewController {
     func formatDuration(duration: TimeInterval) -> String {
