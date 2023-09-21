@@ -90,7 +90,7 @@ public class ExerciseController {
             ExerciseEntity responseEntity = exerciseService.updateExercisary(entity);
 
             ExerciseDTO dtos = new ExerciseDTO(responseEntity);
-
+            log.info("update dto is : ${}", dtos);
             ResponseDTO<ExerciseDTO> response = ResponseDTO.<ExerciseDTO>builder()
                     .info("update exercisary")
                     .data(Collections.singletonList(dtos))

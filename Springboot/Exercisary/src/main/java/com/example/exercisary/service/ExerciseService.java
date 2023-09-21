@@ -40,7 +40,7 @@ public class ExerciseService {
 
     // 수정
     public ExerciseEntity updateExercisary(ExerciseEntity entity) {
-
+        log.info("service enter");
         final Optional<ExerciseEntity> original = Optional.ofNullable(exerciseRepository.findByKey(entity.getKey()));
 
         original.ifPresent(exercise -> {
@@ -53,6 +53,7 @@ public class ExerciseService {
             exercise.setPhotoUrl(entity.getPhotoUrl()!= null ? entity.getPhotoUrl() : exercise.getPhotoUrl());
 
             exerciseRepository.save(exercise);
+            log.info("service save ${}", exercise);
         });
 
         return retrieveExercisaryByKey(entity.getKey());

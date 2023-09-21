@@ -105,7 +105,7 @@ class ViewController: UIViewController {
         self.present(self.deleteConfirmAlert, animated: true, completion: nil)
         deleteConfirmAlert.addAction(UIAlertAction(title: "삭제", style: .destructive) { [self] action in
             let server = Server()
-            server.deleteData(requestURL: "/exercise/\(data[0].key)") { [self] (data, response, error) in
+            server.deleteData(requestURL: "exercise/\(data[0].key)") { [self] (data, response, error) in
                 if let error = error {
                     print("Error: \(error)")
                     return

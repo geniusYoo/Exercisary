@@ -163,19 +163,18 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
         let content = contentTextField.text ?? ""
         let date = dateToString(date: datePicker.date, format: "yyyy.MM.dd")
         
-        let exerciseData = Exercise.Format(
-            key: UUID().uuidString,
-            date: date,
-            type: type,
-            time: time,
-            content: content,
-            memo: memo,
-            photoUrl: "",
-            userId: userId
-        )
-        
         DispatchQueue.global().async { [self] in
             if flag == 0 { // 생성
+                let exerciseData = Exercise.Format(
+                    key: UUID().uuidString,
+                    date: date,
+                    type: type,
+                    time: time,
+                    content: content,
+                    memo: memo,
+                    photoUrl: "",
+                    userId: userId
+                )
                 server.postDataToServer(requestURL: "exercise", requestData: [
                     "key" : exerciseData.key,
                     "date" : exerciseData.date,
@@ -196,6 +195,16 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
             }
             
             else { // 수정
+                let exerciseData = Exercise.Format(
+                    key: data.key,
+                    date: date,
+                    type: type,
+                    time: time,
+                    content: content,
+                    memo: memo,
+                    photoUrl: "",
+                    userId: userId
+                )
                 server.updateData(requestURL: "exercise", requestData: [
                     "key" : exerciseData.key,
                     "date" : exerciseData.date,
@@ -220,7 +229,7 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
                 }
 
                 navigationController?.popViewController(animated: true)
-                print("exercise data : \(exerciseData)")
+//                print("exercise data : \(exerciseData)")
             }
         }
         
