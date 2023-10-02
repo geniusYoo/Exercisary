@@ -4,10 +4,14 @@ import com.example.exercisary.model.ExerciseEntity;
 import com.example.exercisary.persistence.ExerciseRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -16,6 +20,9 @@ public class ExerciseService {
     @Autowired
     ExerciseRepository exerciseRepository;
 
+    @Autowired
+    private GridFsTemplate gridFsTemplate;
+
     // Exercisary 생성
     public ExerciseEntity createExercisary(ExerciseEntity entity) {
 
@@ -23,6 +30,25 @@ public class ExerciseService {
         if(entity == null || entity.getUserId() == null ) {
             throw new RuntimeException("Invalid arguments");
         }
+
+        exerciseRepository.save(entity);
+
+        return retrieveExercisaryByKey(entity.getKey());
+    }
+
+    public ExerciseEntity create(ExerciseEntity entity, MultipartFile file) throws IOException {
+
+        // validation
+        if(entity == null || entity.getUserId() == null ) {
+            throw new RuntimeException("Invalid arguments");
+        }
+
+        // GridFs에 저장
+        String fileId = UUID.randomUUID().toString();
+        gridFsTemplate.store(file.getInputStream(), fileId);
+
+        String photoUrl = "/exercisary/" + fileId;
+        entity.setPhotoUrl(photoUrl);
 
         exerciseRepository.save(entity);
 

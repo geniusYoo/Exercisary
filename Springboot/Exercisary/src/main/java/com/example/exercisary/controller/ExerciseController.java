@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,11 +25,11 @@ public class ExerciseController {
 
     // CREATE
     @PostMapping
-    public ResponseEntity<?> createExercisary(@RequestBody ExerciseDTO dto) {
+    public ResponseEntity<?> createExercisary(@RequestPart("file") MultipartFile file, @RequestPart ExerciseDTO dto) {
         try {
             ExerciseEntity entity = ExerciseDTO.toEntity(dto);
 
-            entity = exerciseService.createExercisary(entity);
+            entity = exerciseService.create(entity, file);
 
             ExerciseDTO dtos = new ExerciseDTO(entity);
 

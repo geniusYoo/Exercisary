@@ -124,7 +124,7 @@ class ViewController: UIViewController {
                                     let content = dataEntry["content"] as? String ?? ""
                                     let memo = dataEntry["memo"] as? String ?? ""
                                     let userId = dataEntry["userId"] as? String ?? ""
-                                    let photoUrl = dataEntry["photoUrl"] as? String ?? ""
+                                    let photo = dataEntry["photo"] as? String ?? ""
                                     
                                     let exerciseData = Exercise.Format(
                                         key: key,
@@ -133,7 +133,7 @@ class ViewController: UIViewController {
                                         time: time,
                                         content: content,
                                         memo: memo,
-                                        photoUrl: photoUrl,
+                                        photoUrl: "",
                                         userId: userId
                                     )
                                     let index = Exercise.shared.deleteExerciseData(data :exerciseData)
@@ -196,7 +196,7 @@ class ViewController: UIViewController {
             let content = dataEntry["content"] as? String ?? ""
             let memo = dataEntry["memo"] as? String ?? ""
             let userId = dataEntry["userId"] as? String ?? ""
-            let photoUrl = dataEntry["photoUrl"] as? String ?? ""
+            let photo = dataEntry["photo"] as? String ?? ""
             
             let exerciseData = Exercise.Format(
                 key: key,
@@ -205,7 +205,7 @@ class ViewController: UIViewController {
                 time: time,
                 content: content,
                 memo: memo,
-                photoUrl: photoUrl,
+                photoUrl: "",
                 userId: userId
             )
             Exercise.shared.appendExerciseData(data :exerciseData)
@@ -245,7 +245,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         cell.timeLabel.text = exercises.time
         cell.contentLabel.text = exercises.content
         cell.memoLabel.text = exercises.memo
-        
+        cell.stampLabel.text = String(exercises.type.prefix(1))
         
 
         return cell

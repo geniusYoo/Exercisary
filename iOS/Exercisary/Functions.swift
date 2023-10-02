@@ -31,3 +31,10 @@ func getStartAndEndDateOfMonth(for date: Date) -> (start: Date, end: Date)? {
     
     return (startOfMonth, endOfMonth)
 }
+// 이미지 크기를 조정하는 함수
+func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage {
+    let renderer = UIGraphicsImageRenderer(size: targetSize)
+    return renderer.image { (context) in
+        image.draw(in: CGRect(origin: .zero, size: targetSize))
+    }
+}

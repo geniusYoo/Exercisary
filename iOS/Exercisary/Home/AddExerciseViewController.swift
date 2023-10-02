@@ -22,9 +22,8 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var memoTextField: UITextField!
     
-    @IBOutlet weak var imageView1: UIImageView!
-    @IBOutlet weak var imageView2: UIImageView!
-    
+    @IBOutlet weak var imageView: UIImageView!
+
     @IBOutlet weak var saveButton: UIButton!
     
     @IBOutlet weak var addImageButton: UIButton!
@@ -56,26 +55,30 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
         enrollAlertEvent()
         setupUI()
         memoTextField.delegate = self
+
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             self.view.endEditing(true)
-      }
+    }
     
     func sendingType(type: String) {
         self.receiveType = type
         print("type!! \(type), \(receiveType)")
-        
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // 키보드 내리면서 동작
         textField.resignFirstResponder()
         return true
     }
     
+    @IBAction func addImageButtonTapped(_ sender: Any) {
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     // 이미지 위의 버튼이 눌렸을 때 AlertController 띄우기
-    @objc func imageButtonTapped() {
+    @objc func imageButtonTapped(_ sender: UITapGestureRecognizer) {
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -163,6 +166,8 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
         let content = contentTextField.text ?? ""
         let date = dateToString(date: datePicker.date, format: "yyyy.MM.dd")
         
+        let image = self.imageView.image ?? UIImage()
+        
         DispatchQueue.global().async { [self] in
             if flag == 0 { // 생성
                 let exerciseData = Exercise.Format(
@@ -175,7 +180,7 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
                     photoUrl: "",
                     userId: userId
                 )
-                server.postDataToServer(requestURL: "exercise", requestData: [
+                server.postDataToServerWithImage(image: image, requestURL: "exercise", requestData: [
                     "key" : exerciseData.key,
                     "date" : exerciseData.date,
                     "type" : exerciseData.type,
@@ -205,7 +210,7 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
                     photoUrl: "",
                     userId: userId
                 )
-                server.updateData(requestURL: "exercise", requestData: [
+                server.updateDataWithImage(image: image, requestURL: "exercise", requestData: [
                     "key" : exerciseData.key,
                     "date" : exerciseData.date,
                     "type" : exerciseData.type,
@@ -298,11 +303,11 @@ extension AddExerciseViewController: UIPopoverPresentationControllerDelegate {
 
 extension AddExerciseViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    // imagePicker를 사용해서 이미지가 선택되면 imageView에 선택된 이미지를 로드하고 UserDefaults에 저장
+    // imagePicker를 사용해서 이미지가 선택되면 imageView에 선택된 이미지를 로드
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let image = info[UIImagePickerController.InfoKey.originalImage]
                 as? UIImage {
-                self.imageView1.image = image
+                self.imageView.image = image
                 
                 backgroundView.reloadInputViews()
             }
