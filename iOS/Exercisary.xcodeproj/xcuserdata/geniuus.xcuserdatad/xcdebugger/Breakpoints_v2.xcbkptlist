@@ -380,7 +380,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
             endingLineNumber = "65"
-            landmarkName = "viewDidLoad()"
+            landmarkName = "sendingType(type:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
