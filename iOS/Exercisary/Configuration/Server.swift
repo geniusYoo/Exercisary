@@ -89,8 +89,8 @@ class Server {
             completion(nil, nil, nil) // 잘못된 URL이면 completion에 nil 전달
             return
         }
-        let resizeImage = resizeImage(image, targetSize: CGSize(width: 800, height: 600))
-        guard let imageData = resizeImage.jpegData(compressionQuality: 1.0) else {
+        let resizeImage = resizeImage(image, targetSize: CGSize(width: 150, height: 150))
+        guard let imageData = resizeImage.jpegData(compressionQuality: 0.5) else {
                 return
         }
         
@@ -112,7 +112,7 @@ class Server {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: requestData)
             body.append("--\(boundary)\r\n".data(using: .utf8)!)
-            body.append("Content-Disposition: form-data; name=\"jsondata\"\r\n".data(using: .utf8)!)
+            body.append("Content-Disposition: form-data; name=\"jsonData\"\r\n".data(using: .utf8)!)
             body.append("Content-Type: application/json\r\n\r\n".data(using: .utf8)!)
             body.append(jsonData)
             body.append("\r\n".data(using: .utf8)!)
@@ -122,7 +122,7 @@ class Server {
         }
         body.append("--\(boundary)--\r\n".data(using: .utf8)!)
         request.httpBody = body
-        
+        print(request)
         let session = URLSession.shared
         let task = session.uploadTask(with: request, from: nil) { (data, response, error) in
             completion(data, response, error) // 요청 결과를 completion에 전달

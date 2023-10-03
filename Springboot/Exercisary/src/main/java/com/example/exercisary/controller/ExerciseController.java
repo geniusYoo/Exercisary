@@ -25,7 +25,7 @@ public class ExerciseController {
 
     // CREATE
     @PostMapping
-    public ResponseEntity<?> createExercisary(@RequestPart("image") MultipartFile file, @RequestPart("jsonData") ExerciseDTO dto) {
+    public ResponseEntity<?> create(@RequestPart("image") MultipartFile file, @RequestPart("jsonData") ExerciseDTO dto) {
         try {
             ExerciseEntity entity = ExerciseDTO.toEntity(dto);
 
@@ -54,13 +54,14 @@ public class ExerciseController {
 
     // RETRIEVE
     @GetMapping("/{userId}")
-    public ResponseEntity<?> retrieveAllUserExercisaries(@PathVariable("userId") String userId) {
+    public ResponseEntity<?> retrieve(@PathVariable("userId") String userId) {
         log.info("response retrieve");
 
         try {
-            List<ExerciseEntity> entities = exerciseService.retrieveAllUserExercisaries(userId);
-
-            List<ExerciseDTO> exerciseDTOS = entities.stream().map(ExerciseDTO::new).collect(Collectors.toList());
+//            List<ExerciseEntity> entities = exerciseService.retrieveAllUserExercisaries(userId);
+//
+//            List<ExerciseDTO> exerciseDTOS = entities.stream().map(ExerciseDTO::new).collect(Collectors.toList());
+            List<ExerciseDTO> exerciseDTOS = exerciseService.retrieve(userId);
 
             ResponseDTO<ExerciseDTO> response = ResponseDTO.<ExerciseDTO>builder()
                     .info("retrieve all user exercisaries")
@@ -83,7 +84,7 @@ public class ExerciseController {
 
     // UPDATE
     @PutMapping
-    public ResponseEntity<?> updateExercisary(@RequestBody ExerciseDTO dto) {
+    public ResponseEntity<?> update(@RequestBody ExerciseDTO dto) {
         try {
             log.info("update! ${}", dto);
             ExerciseEntity entity = ExerciseDTO.toEntity(dto);
@@ -112,7 +113,7 @@ public class ExerciseController {
     }
 
     @DeleteMapping("/{key}")
-    public ResponseEntity<?> deleteSchedule(@PathVariable("key") String key) {
+    public ResponseEntity<?> delete(@PathVariable("key") String key) {
         try {
             ExerciseEntity entity = exerciseService.retrieveExercisaryByKey(key);
 

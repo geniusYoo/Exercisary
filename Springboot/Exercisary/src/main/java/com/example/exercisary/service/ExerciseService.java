@@ -1,14 +1,20 @@
 package com.example.exercisary.service;
 
+import com.example.exercisary.dto.ExerciseDTO;
 import com.example.exercisary.model.ExerciseEntity;
 import com.example.exercisary.persistence.ExerciseRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -62,6 +68,35 @@ public class ExerciseService {
 
     public List<ExerciseEntity> retrieveAllUserExercisaries(String userId) {
         return exerciseRepository.findByUserId(userId);
+    }
+
+    // 사용자가 가지고 있는 Exercisary들 모두 검색 + 해당 데이터의 이미지까지 모두 검색해서 붙여야 함 (어디다가? => DTO에!)
+    public List<ExerciseDTO> retrieve(String userId) {
+
+        // 사용자의 모든 Exercisary 검색
+        List<ExerciseEntity> entities = exerciseRepository.findByUserId(userId);
+        List<ExerciseDTO> dtos = new ArrayList<>();
+        // 모든 entity에 대한 Loop
+        for (ExerciseEntity entity: entities) {
+            // 각 entity의 photoUrl에 아이디를 저장해뒀으니, 그걸로 쿼리 만들어서 resource 반환
+
+            Query query = new Query(Criteria.where("_id").is(entity.getPhotoUrl()));
+            GridFsResource resource = gridFsTemplate.getResource(String.valueOf(query));
+            if (resource != null) {
+                try {
+                    // 그 리소스로 바이너리 파일 로드 후 DTO에 세팅, DTO List에 add
+                    byte[] data = resource.getInputStream().readAllBytes();
+                    ExerciseDTO dto = new ExerciseDTO(entity);
+                    dto.setPhoto(data);
+                    dtos.add(dto);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return dtos;
+
     }
 
     // 수정

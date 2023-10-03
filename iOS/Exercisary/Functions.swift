@@ -38,3 +38,4 @@ func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage {
         image.draw(in: CGRect(origin: .zero, size: targetSize))
     }
 }
+
