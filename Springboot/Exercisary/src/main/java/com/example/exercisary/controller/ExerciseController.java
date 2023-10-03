@@ -25,7 +25,7 @@ public class ExerciseController {
 
     // CREATE
     @PostMapping
-    public ResponseEntity<?> createExercisary(@RequestPart("file") MultipartFile file, @RequestPart ExerciseDTO dto) {
+    public ResponseEntity<?> createExercisary(@RequestPart("image") MultipartFile file, @RequestPart("jsonData") ExerciseDTO dto) {
         try {
             ExerciseEntity entity = ExerciseDTO.toEntity(dto);
 

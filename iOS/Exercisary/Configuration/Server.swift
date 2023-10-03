@@ -199,7 +199,7 @@ class Server {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: requestData)
             body.append("--\(boundary)\r\n".data(using: .utf8)!)
-            body.append("Content-Disposition: form-data; name=\"jsondata\"\r\n".data(using: .utf8)!)
+            body.append("Content-Disposition: form-data; name=\"jsonData\"\r\n".data(using: .utf8)!)
             body.append("Content-Type: application/json\r\n\r\n".data(using: .utf8)!)
             body.append(jsonData)
             body.append("\r\n".data(using: .utf8)!)
