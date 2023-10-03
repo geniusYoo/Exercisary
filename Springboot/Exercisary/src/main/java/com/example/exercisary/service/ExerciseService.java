@@ -4,6 +4,7 @@ import com.example.exercisary.dto.ExerciseDTO;
 import com.example.exercisary.model.ExerciseEntity;
 import com.example.exercisary.persistence.ExerciseRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -29,19 +30,6 @@ public class ExerciseService {
     @Autowired
     private GridFsTemplate gridFsTemplate;
 
-    // Exercisary 생성
-    public ExerciseEntity createExercisary(ExerciseEntity entity) {
-
-        // validation
-        if(entity == null || entity.getUserId() == null ) {
-            throw new RuntimeException("Invalid arguments");
-        }
-
-        exerciseRepository.save(entity);
-
-        return retrieveExercisaryByKey(entity.getKey());
-    }
-
     public ExerciseEntity create(ExerciseEntity entity, MultipartFile file) throws IOException {
 
         // validation
@@ -49,12 +37,16 @@ public class ExerciseService {
             throw new RuntimeException("Invalid arguments");
         }
 
+        // 새 ObjectId 생성
+        ObjectId objectId = new ObjectId();
+
+        // ObjectId를 문자열로 변환
+        String fileId = objectId.toHexString();
+
         // GridFs에 저장
-        String fileId = UUID.randomUUID().toString();
         gridFsTemplate.store(file.getInputStream(), fileId);
 
-        String photoUrl = "/exercisary/" + fileId;
-        entity.setPhotoUrl(photoUrl);
+        entity.setPhotoUrl(fileId);
 
         exerciseRepository.save(entity);
 
@@ -79,9 +71,13 @@ public class ExerciseService {
         // 모든 entity에 대한 Loop
         for (ExerciseEntity entity: entities) {
             // 각 entity의 photoUrl에 아이디를 저장해뒀으니, 그걸로 쿼리 만들어서 resource 반환
+            if (entity.getPhotoUrl().equals("")) {
+                continue;
+            }
+            Query query = new Query(Criteria.where("filename").is(entity.getPhotoUrl()));
 
-            Query query = new Query(Criteria.where("_id").is(entity.getPhotoUrl()));
             GridFsResource resource = gridFsTemplate.getResource(String.valueOf(query));
+
             if (resource != null) {
                 try {
                     // 그 리소스로 바이너리 파일 로드 후 DTO에 세팅, DTO List에 add
