@@ -32,7 +32,7 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
     var image: UIImage!
     let alertController = UIAlertController(title: "올릴 방식을 선택하세요", message: "사진 찍기 또는 앨범에서 선택", preferredStyle: .actionSheet)
     
-    var data = Exercise.Format(key: "", date: "", type: "", time: "", content: "", memo: "", photoUrl: "", userId: "")
+    var data = Exercise.Format(key: "", date: "", type: "", time: "", content: "", memo: "", photoUrl: "", userId: "", base64ImageData: "")
     
     var userId = ""
     
@@ -178,7 +178,8 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
                     content: content,
                     memo: memo,
                     photoUrl: "",
-                    userId: userId
+                    userId: userId,
+                    base64ImageData: ""
                 )
                 server.postDataToServerWithImage(image: image, requestURL: "exercise", requestData: [
                     "key" : exerciseData.key,
@@ -208,7 +209,8 @@ class AddExerciseViewController: UIViewController, UITextFieldDelegate {
                     content: content,
                     memo: memo,
                     photoUrl: "",
-                    userId: userId
+                    userId: userId,
+                    base64ImageData: ""
                 )
                 server.updateDataWithImage(image: image, requestURL: "exercise", requestData: [
                     "key" : exerciseData.key,

@@ -17,12 +17,6 @@
 		5B2AF42E2A93DD05000839E5 /* Gaegu-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AF42A2A93DD05000839E5 /* Gaegu-Light.ttf */; };
 		5B2AF42F2A93DD05000839E5 /* Gaegu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AF42B2A93DD05000839E5 /* Gaegu-Regular.ttf */; };
 		5B2AF4312A93E1B4000839E5 /* PoorStory-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AF4302A93E1B4000839E5 /* PoorStory-Regular.ttf */; };
-		5B362A3B2A39DE3600233283 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5B362A3A2A39DE3600233283 /* FirebaseDatabase */; };
-		5B362A3D2A39DE3600233283 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5B362A3C2A39DE3600233283 /* FirebaseDatabaseSwift */; };
-		5B362A3F2A39DE3600233283 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5B362A3E2A39DE3600233283 /* FirebaseFirestore */; };
-		5B362A412A39DE3600233283 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5B362A402A39DE3600233283 /* FirebaseFirestoreSwift */; };
-		5B362A432A39DE3600233283 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 5B362A422A39DE3600233283 /* FirebaseFunctions */; };
-		5B362A452A39DE3600233283 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5B362A442A39DE3600233283 /* FirebaseStorage */; };
 		5B362A472A39EB5200233283 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B362A462A39EB5200233283 /* GoogleService-Info.plist */; };
 		5B362A492A39EF1200233283 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B362A482A39EF1200233283 /* Exercise.swift */; };
 		5B362A4B2A39EF7B00233283 /* AddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B362A4A2A39EF7B00233283 /* AddExerciseViewController.swift */; };
@@ -99,12 +93,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B362A412A39DE3600233283 /* FirebaseFirestoreSwift in Frameworks */,
-				5B362A3D2A39DE3600233283 /* FirebaseDatabaseSwift in Frameworks */,
-				5B362A3F2A39DE3600233283 /* FirebaseFirestore in Frameworks */,
-				5B362A432A39DE3600233283 /* FirebaseFunctions in Frameworks */,
-				5B362A452A39DE3600233283 /* FirebaseStorage in Frameworks */,
-				5B362A3B2A39DE3600233283 /* FirebaseDatabase in Frameworks */,
 				5BDD65EE2A38657F008E0889 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,12 +241,6 @@
 			name = Exercisary;
 			packageProductDependencies = (
 				5BDD65ED2A38657F008E0889 /* FSCalendar */,
-				5B362A3A2A39DE3600233283 /* FirebaseDatabase */,
-				5B362A3C2A39DE3600233283 /* FirebaseDatabaseSwift */,
-				5B362A3E2A39DE3600233283 /* FirebaseFirestore */,
-				5B362A402A39DE3600233283 /* FirebaseFirestoreSwift */,
-				5B362A422A39DE3600233283 /* FirebaseFunctions */,
-				5B362A442A39DE3600233283 /* FirebaseStorage */,
 			);
 			productName = Exercisary;
 			productReference = 5BDD65B92A38645F008E0889 /* Exercisary.app */;
@@ -334,7 +316,6 @@
 			mainGroup = 5BDD65B02A38645F008E0889;
 			packageReferences = (
 				5BDD65EC2A38657F008E0889 /* XCRemoteSwiftPackageReference "FSCalendar" */,
-				5B362A392A39DE3600233283 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 5BDD65BA2A38645F008E0889 /* Products */;
 			projectDirPath = "";
@@ -735,14 +716,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5B362A392A39DE3600233283 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
-			};
-		};
 		5BDD65EC2A38657F008E0889 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
@@ -754,36 +727,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5B362A3A2A39DE3600233283 /* FirebaseDatabase */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5B362A392A39DE3600233283 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseDatabase;
-		};
-		5B362A3C2A39DE3600233283 /* FirebaseDatabaseSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5B362A392A39DE3600233283 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseDatabaseSwift;
-		};
-		5B362A3E2A39DE3600233283 /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5B362A392A39DE3600233283 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-		5B362A402A39DE3600233283 /* FirebaseFirestoreSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5B362A392A39DE3600233283 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestoreSwift;
-		};
-		5B362A422A39DE3600233283 /* FirebaseFunctions */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5B362A392A39DE3600233283 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFunctions;
-		};
-		5B362A442A39DE3600233283 /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5B362A392A39DE3600233283 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
-		};
 		5BDD65ED2A38657F008E0889 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5BDD65EC2A38657F008E0889 /* XCRemoteSwiftPackageReference "FSCalendar" */;

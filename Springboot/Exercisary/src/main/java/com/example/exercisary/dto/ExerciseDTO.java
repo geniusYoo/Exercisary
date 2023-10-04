@@ -20,7 +20,7 @@ public class ExerciseDTO {
     private String memo;
     private String userId;
     private String photoUrl;
-    private byte [] photo;
+    private String base64ImageData;
 
     public ExerciseDTO(final ExerciseEntity entity) {
         this.key = entity.getKey();

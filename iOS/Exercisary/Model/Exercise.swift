@@ -25,8 +25,9 @@ class Exercise {
         var time: String // 운동한 시간
         var content: String // 운동 내용
         var memo: String
-        var photoUrl: String
+        var photoUrl: String // GridFs에 저장되는 filename
         var userId: String // 생성한 유저 아이디
+        var base64ImageData: String // base64로 인코딩된 이미지 데이터
     }
     
     func appendExerciseData(data: Format) {

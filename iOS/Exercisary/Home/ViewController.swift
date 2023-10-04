@@ -124,7 +124,8 @@ class ViewController: UIViewController {
                                     let content = dataEntry["content"] as? String ?? ""
                                     let memo = dataEntry["memo"] as? String ?? ""
                                     let userId = dataEntry["userId"] as? String ?? ""
-                                    let photo = dataEntry["photo"] as? String ?? ""
+                                    let photoUrl = dataEntry["photoUrl"] as? String ?? ""
+                                    let base64ImageData = dataEntry["base64ImageData"] as? String ?? ""
                                     
                                     let exerciseData = Exercise.Format(
                                         key: key,
@@ -134,7 +135,8 @@ class ViewController: UIViewController {
                                         content: content,
                                         memo: memo,
                                         photoUrl: "",
-                                        userId: userId
+                                        userId: userId,
+                                        base64ImageData: ""
                                     )
                                     let index = Exercise.shared.deleteExerciseData(data :exerciseData)
                                     DispatchQueue.main.async {
@@ -196,7 +198,8 @@ class ViewController: UIViewController {
             let content = dataEntry["content"] as? String ?? ""
             let memo = dataEntry["memo"] as? String ?? ""
             let userId = dataEntry["userId"] as? String ?? ""
-            let photo = dataEntry["photo"] as? String ?? ""
+            let photoUrl = dataEntry["photoUrl"] as? String ?? ""
+            let base64ImageData = dataEntry["base64ImageData"] as? String ?? ""
             
             let exerciseData = Exercise.Format(
                 key: key,
@@ -205,8 +208,9 @@ class ViewController: UIViewController {
                 time: time,
                 content: content,
                 memo: memo,
-                photoUrl: "",
-                userId: userId
+                photoUrl: photoUrl,
+                userId: userId,
+                base64ImageData: base64ImageData
             )
             Exercise.shared.appendExerciseData(data :exerciseData)
             self.filtered.append(exerciseData)
@@ -247,6 +251,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         cell.memoLabel.text = exercises.memo
         cell.stampLabel.text = String(exercises.type.prefix(1))
         
+        let imageData = Data(base64Encoded: exercises.base64ImageData)
+        cell.imageView1.image = UIImage(data: imageData ?? Data())
 
         return cell
     }

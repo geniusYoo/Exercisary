@@ -15,10 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -88,8 +85,11 @@ public class ExerciseService {
                     for (GridFsResource resource : resources) {
                         // 그 리소스로 바이너리 파일 로드 후 DTO에 세팅, DTO List에 add
                         byte[] data = resource.getInputStream().readAllBytes();
+
+                        // Base64로 인코딩해 DTO에 주입
+                        String base64ImageData = Base64.getEncoder().encodeToString(data);
                         ExerciseDTO dto = new ExerciseDTO(entity);
-                        dto.setPhoto(data);
+                        dto.setBase64ImageData(base64ImageData);
                         dtos.add(dto);
                     }
 
