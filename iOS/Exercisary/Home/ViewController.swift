@@ -45,6 +45,8 @@ class ViewController: UIViewController {
         data = []
         serverCall()
         calendarView.reloadData()
+        detailCollectionView.reloadData()
+        backgroundView.reloadInputViews()
     }
 
     override func viewDidLoad() {
@@ -214,7 +216,7 @@ class ViewController: UIViewController {
             )
             Exercise.shared.appendExerciseData(data :exerciseData)
             self.filtered.append(exerciseData)
-            print("filtered : \(filtered)")
+//            print("filtered : \(filtered)")
         }
     }
     

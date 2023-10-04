@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import FirebaseFirestore
-import FirebaseStorage
 
 
 class AddExerciseViewController: UIViewController, UITextFieldDelegate {
