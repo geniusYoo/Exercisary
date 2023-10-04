@@ -68,7 +68,7 @@ public class ExerciseController {
                     .data(exerciseDTOS)
                     .status("succeed")
                     .build();
-            log.info("response retrieve : {}", response);
+//            log.info("response retrieve : {}", response);
             return ResponseEntity.ok().body(response);
 
         } catch(Exception e) {

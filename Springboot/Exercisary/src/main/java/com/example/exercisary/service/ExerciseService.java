@@ -41,12 +41,17 @@ public class ExerciseService {
         ObjectId objectId = new ObjectId();
 
         // ObjectId를 문자열로 변환
-        String fileId = objectId.toHexString();
+        String id = objectId.toHexString();
 
-        // GridFs에 저장
-        gridFsTemplate.store(file.getInputStream(), fileId);
+        // 24자리 UUID + userId 형식. 예) 651d58645f3b0630f3c4ca04_geniuus
+        String fileName = id + "_" + entity.getUserId();
 
-        entity.setPhotoUrl(fileId);
+        // GridFs에 저장, 두번째 파라미터는 filename 지정하는 거임
+        gridFsTemplate.store(file.getInputStream(), fileName);
+
+        entity.setPhotoUrl(fileName);
+
+        log.info("fileId is : {}", fileName);
 
         exerciseRepository.save(entity);
 
@@ -74,17 +79,20 @@ public class ExerciseService {
             if (entity.getPhotoUrl().equals("")) {
                 continue;
             }
-            Query query = new Query(Criteria.where("filename").is(entity.getPhotoUrl()));
+//            Query query = Query.query(Criteria.where("filename").is(entity.getPhotoUrl()));
 
-            GridFsResource resource = gridFsTemplate.getResource(String.valueOf(query));
-
-            if (resource != null) {
+//            GridFsResource resource = gridFsTemplate.getResource(entity.getPhotoUrl());
+            GridFsResource [] resources = gridFsTemplate.getResources("*_" + userId);
+            if (resources != null) {
                 try {
-                    // 그 리소스로 바이너리 파일 로드 후 DTO에 세팅, DTO List에 add
-                    byte[] data = resource.getInputStream().readAllBytes();
-                    ExerciseDTO dto = new ExerciseDTO(entity);
-                    dto.setPhoto(data);
-                    dtos.add(dto);
+                    for (GridFsResource resource : resources) {
+                        // 그 리소스로 바이너리 파일 로드 후 DTO에 세팅, DTO List에 add
+                        byte[] data = resource.getInputStream().readAllBytes();
+                        ExerciseDTO dto = new ExerciseDTO(entity);
+                        dto.setPhoto(data);
+                        dtos.add(dto);
+                    }
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
