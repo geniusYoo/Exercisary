@@ -83,14 +83,21 @@ public class ExerciseService {
             if (resources != null) {
                 try {
                     for (GridFsResource resource : resources) {
-                        // 그 리소스로 바이너리 파일 로드 후 DTO에 세팅, DTO List에 add
-                        byte[] data = resource.getInputStream().readAllBytes();
+                        // 리소스와 엔티티를 매칭해야 함
+                        if (resource.getFilename().equals(entity.getPhotoUrl())) {
+                            
+                            // 그 리소스로 바이너리 파일 로드 후 DTO에 세팅, DTO List에 add
+                            byte[] data = resource.getInputStream().readAllBytes();
 
-                        // Base64로 인코딩해 DTO에 주입
-                        String base64ImageData = Base64.getEncoder().encodeToString(data);
-                        ExerciseDTO dto = new ExerciseDTO(entity);
-                        dto.setBase64ImageData(base64ImageData);
-                        dtos.add(dto);
+                            // Base64로 인코딩해 DTO에 주입
+                            String base64ImageData = Base64.getEncoder().encodeToString(data);
+                            ExerciseDTO dto = new ExerciseDTO(entity);
+                            dto.setBase64ImageData(base64ImageData);
+                            dtos.add(dto);
+                        }
+
+                        else continue;
+
                     }
 
                 } catch (IOException e) {

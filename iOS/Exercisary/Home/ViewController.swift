@@ -58,6 +58,7 @@ class ViewController: UIViewController {
         backgroundView.layer.cornerRadius = 20
         userNameLabel.text = userName
         calendarView.reloadData()
+        print(filtered.count)
     }
     
     // segmentControl로 주간/월간 전환할 때
@@ -216,7 +217,7 @@ class ViewController: UIViewController {
             )
             Exercise.shared.appendExerciseData(data :exerciseData)
             self.filtered.append(exerciseData)
-//            print("filtered : \(filtered)")
+            
         }
     }
     
@@ -245,8 +246,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         let cell = detailCollectionView.dequeueReusableCell(withReuseIdentifier: "DetailCollectionViewCell", for: indexPath) as! DetailCollectionViewCell
         
         let exercises = data[indexPath.item]
-        print("index : \(indexPath)")
-        print("exercises filter : \(exercises)")
+//        print("index : \(indexPath)")
+//        print("exercises filter : \(exercises)")
         cell.typeLabel.text = exercises.type
         cell.timeLabel.text = exercises.time
         cell.contentLabel.text = exercises.content
