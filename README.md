@@ -27,28 +27,43 @@ Exercisary = Exercise + Diary !
 
 ## ✨ Main Features
 
-- 회원 가입 시 내가 평소 선호하는 운동을 미리 선택해 두면, 운동 기록 생성 시에 종류를 일일이 입력하지 않아도 자동으로 입력됩니다.
-
-<div align="center">
-      
+- 회원 가입 & 초기 설정
+  
+  - 아이디 중복 체크 가능. 아이디는 유일합니다.
+    
+  - 선호 운동을 미리 선택하여 Exercisary를 생성할 때 초기값으로 설정되어 편리함을 제공합니다.
+    
 |<img src="https://github.com/geniusYoo/Exercisary/blob/main/Documents/signup.png" width=200>|<img src="https://github.com/geniusYoo/Exercisary/blob/main/Documents/modify.png" width=200>|
-|:--:|:--:|
+|:--|:--|
 |**회원가입**|**선호 운동 선택**|
 
 </div>
 
 <br>
 
-- 캘린더 형으로, 내가 언제 어떤 운동을 했는지 한 눈에 확인할 수 있습니다.
+- 메인 화면 & Exercisary 생성
   
-<div align="center">
+  - 월간 캘린더에 Exercisary가 기록된 날에는 운동 종류가 표시됩니다.
+ 
+  - 운동 종류, 메모, 시간, 운동 사진을 등록할 수 있습니다.
   
-|<img src="https://github.com/geniusYoo/Exercisary/blob/main/Documents/main.png" width=200>|<img src="https://github.com/geniusYoo/Exercisary/blob/main/Documents/detail.png" width=200>|<img src="https://github.com/geniusYoo/Exercisary/blob/main/Documents/write.png" width=200>
-|:--:|:--:|:--:|
-|**메인 화면**|**상세 화면**|**생성**|
+|<img src="https://github.com/geniusYoo/Exercisary/blob/main/Documents/main.png" width=200>|<img src="https://github.com/geniusYoo/Exercisary/blob/main/Documents/write.png" width=200>|
+|:--:|:--:|
+|**메인 화면**|**생성**|
   
 </div>
 
+<br>
+
+- 상세 화면 & 도장 & 운동 종류 편집
+  
+  - 상세 화면에서는, 내가 기록한 Exercisary의 정보들이 항목 별로 정리되어 보여지고, 사진과 함께 운동 종류의 첫 글자를 따 도장이 생성됩니다.
+    
+  - 운동 종류를 기본 4가지 운동이 아닌, 사용자 정의 운동을 추가할 수 있습니다.
+
+|<img src="https://github.com/geniusYoo/Exercisary/blob/main/Documents/detail1.png" width=200>|<img src="https://github.com/geniusYoo/Exercisary/blob/main/Documents/detail2.png" width=200>|<img src="https://github.com/geniusYoo/Exercisary/blob/main/Documents/modify.png" width=200>
+|:--:|:--:|:--:|
+|**상세 화면 1**|**상세 화면 2**|**운동 종류 수정**|
 
 <br />
 
