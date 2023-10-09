@@ -110,12 +110,12 @@ class Server {
         
         
         do {
-            let jsonData = try JSONSerialization.data(withJSONObject: requestData)
-            body.append("--\(boundary)\r\n".data(using: .utf8)!)
-            body.append("Content-Disposition: form-data; name=\"jsonData\"\r\n".data(using: .utf8)!)
-            body.append("Content-Type: application/json\r\n\r\n".data(using: .utf8)!)
-            body.append(jsonData)
-            body.append("\r\n".data(using: .utf8)!)
+                let jsonData = try JSONSerialization.data(withJSONObject: requestData)
+                body.append("--\(boundary)\r\n".data(using: .utf8)!)
+                body.append("Content-Disposition: form-data; name=\"jsonData\"\r\n".data(using: .utf8)!)
+                body.append("Content-Type: application/json\r\n\r\n".data(using: .utf8)!)
+                body.append(jsonData)
+                body.append("\r\n".data(using: .utf8)!)
         } catch {
             completion(nil, nil, error) // JSON 데이터 변환 오류 발생 시 completion에 오류 전달
             return

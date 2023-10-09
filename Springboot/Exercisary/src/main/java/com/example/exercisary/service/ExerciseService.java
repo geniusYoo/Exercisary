@@ -85,7 +85,7 @@ public class ExerciseService {
                     for (GridFsResource resource : resources) {
                         // 리소스와 엔티티를 매칭해야 함
                         if (resource.getFilename().equals(entity.getPhotoUrl())) {
-                            
+
                             // 그 리소스로 바이너리 파일 로드 후 DTO에 세팅, DTO List에 add
                             byte[] data = resource.getInputStream().readAllBytes();
 

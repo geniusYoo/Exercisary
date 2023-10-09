@@ -39,7 +39,7 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        print("vwa")
         Exercise.shared.exercices = []
         filtered = []
         data = []
@@ -51,6 +51,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("vdL")
         calendarConfiguration()
         backgroundView.isHidden = true
         backgroundView.layer.borderColor = UIColor.systemTeal.cgColor
@@ -161,9 +162,9 @@ class ViewController: UIViewController {
     }
     
     func serverCall() {
-            print("userid \(userId!)")
-            let server = Server()
-            
+        print("userid \(userId!)")
+        let server = Server()
+        DispatchQueue.global().async { [self] in
             server.getAllData(requestURL: "exercise/\(userId!)") { [self] (data, response, error) in
                 if let error = error {
                     print("Error: \(error)")
@@ -191,6 +192,8 @@ class ViewController: UIViewController {
                     }
                 }
             }
+        }
+            
     }
     
     func parseEntry(_ dataEntry: [String: Any]) {
